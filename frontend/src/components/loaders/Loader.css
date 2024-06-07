@@ -1,0 +1,31 @@
+.custom-loader-2 {
+    /* width: 50px; */
+    /* height: 50px; */
+    width: 10px;
+    height: 10px;
+    position: absolute;
+    z-index: 1;
+    border-radius: 50%;
+    /* border: 8px solid #0000; */
+    border: 3px solid #0000;
+    border-right-color: #766DF497;
+    position: relative;
+    animation: s4 1s infinite linear;
+  }
+  .custom-loader-2:before,
+  .custom-loader-2:after {
+    content: "";
+    position: absolute;
+    inset:-8px;
+    border-radius: 50%;
+    border:inherit;
+    animation:inherit;
+    animation-duration: 2s;
+  }
+  .custom-loader-2:after {
+    animation-duration: 4s;
+  }
+  
+  @keyframes s4 {
+    100% {transform: rotate(1turn)}
+  }

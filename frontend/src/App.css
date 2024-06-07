@@ -1,0 +1,53 @@
+/* Sidebar.css */
+.content {
+  /* margin-left: 25% ;  */
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0;
+}
+body {
+  margin: 0;
+  padding: 0;
+}
+/* global.css */
+:root {
+  --scrollbar-track-color: #6e949c;
+  --scrollbar-corner-color: #001231;
+  --scrollbar-thumb-color: #8db8c2;
+  --scrollbar-thumb-hover-color: #a7c5cc;
+  --scrollbar-thumb-hover-border-radius: 21px; /* Adjust this value as needed */
+  --scrollbar-width: 0.45em;
+  --scrollbar-vertical-width: 2px;
+}
+
+/* Standard scrollbar styling */
+::-webkit-scrollbar {
+  width: var(--scrollbar-width);
+}
+::-webkit-scrollbar:horizontal {
+  width: var(--scrollbar-vertical-width);
+}
+::-webkit-scrollbar-track {
+  background-color: var(--scrollbar-track-color);
+}
+
+::-webkit-scrollbar-corner {
+  background-color: var(--scrollbar-corner-color);
+}
+
+/* Adjust the border-radius on hover */
+::-webkit-scrollbar-thumb {
+  background-color: var(--scrollbar-thumb-color);
+  border-radius: var(--scrollbar-width);
+}
+
+/* Hover effect with increased border-radius */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--scrollbar-thumb-hover-color);
+  border-radius: var(
+    --scrollbar-thumb-hover-border-radius
+  ); /* Apply the hover border-radius */
+}

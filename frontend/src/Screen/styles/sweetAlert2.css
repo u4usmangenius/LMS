@@ -1,0 +1,20 @@
+.custom-popup-class {
+  /* Define any styles for the popup container here */
+  font-size: 18px !important;
+  font-weight: 800;
+
+}
+
+.custom-content-class {
+  font-size: 18px !important;
+  text-align: center;
+}
+/* .custom-confirm-button-class {
+  background-color: rgb(179, 255, 0) !important;
+  color: #fff;
+}
+
+.custom-cancel-button-class {
+  background-color: orange !important;
+  color: #000;
+} */
