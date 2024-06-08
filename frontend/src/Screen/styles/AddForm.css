@@ -24,7 +24,7 @@ input[type="number"] {
 }
 
 .addForm-container-option:hover {
-  background-color: #001231;
+  background-color: #f97c4d;
   letter-spacing: 1px;
   transition: 0.2s ease-out;
   color: #fff;
@@ -37,7 +37,7 @@ input[type="number"] {
   letter-spacing: 0;
 }
 .addForm-form-active {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   color: #fff;
   cursor: default;
@@ -55,7 +55,7 @@ input[type="number"] {
   margin-bottom: 30px;
 }
 .form-active {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   color: #fff;
   cursor: default;
@@ -198,7 +198,7 @@ input[type="number"] {
   cursor: pointer;
 }
 .form-active {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
 }
 .add-Forms-button {
@@ -218,7 +218,7 @@ input[type="number"] {
   height: 44px;
 }
 .add-form-button {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   border: none;
   text-align: center;
@@ -232,7 +232,7 @@ input[type="number"] {
   width: 141px;
 }
 .add-form-button:hover {
-  background-color: #001231;
+  background-color: #f97c4d;
   letter-spacing: 1px !important;
   transition: 0.2s ease-out;
 }
@@ -250,7 +250,7 @@ input[type="number"] {
   display: flex;
 }
 .addForm-import-button::file-selector-button {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   color: #fff;
   padding: 10px 20px;
@@ -259,7 +259,7 @@ input[type="number"] {
   cursor: pointer;
 }
 .addForm-import-button:hover::file-selector-button {
-  background-color: #001231;
+  background-color: #f97c4d;
   letter-spacing: 1px;
   transition: 0.2s ease-out;
 }
@@ -290,7 +290,7 @@ input[type="number"] {
   background: transparent;
 }
 .border:hover {
-  /* background: #001231; */
+  /* background: #f97c4d; */
   /* color: #fff; */
 }
 .width {
