@@ -93,27 +93,24 @@ router.post("/api/categories", async (req, res) => {
 });
 
 // Update an existing category
-router.put("/api/categories/:id/:name", async (req, res) => {
-    const { id, name } = req.params;  // Destructure id and name from req.params
-  
+router.put("/api/categories/:id", async (req, res) => {
+    const { name } = req.body;
+    
     const query = `
       UPDATE categories 
       SET name = ?, updated_at = CURRENT_TIMESTAMP 
       WHERE id = ?
     `;
-  
-    db.run(query, [name, id], function (err) {
+    
+    db.run(query, [name, req.params.id], function (err) {
       if (err) {
         console.error("Error updating category:", err);
         res.status(500).json({ error: "Failed to update category" });
-      } else if (this.changes === 0) {
-        // Check if any row was updated
-        res.status(404).json({ error: 'Category not found' });
       } else {
-        res.json({ id, name });
+        res.json({ id: req.params.id, name });
       }
     });
-  });
+  }); 
 
 // Delete a category
 router.delete("/api/categories/:id", async (req, res) => {
