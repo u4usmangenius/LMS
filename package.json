@@ -5,7 +5,7 @@
   "main": "main.js",
   "homepage": "./",
   "scripts": {
-    "start": "nodemon --watch main.js --exec 'electron .'",
+    "start": "nodemon --watch main.js --exec \"npx electron .\"",
     "prebuild": "rm -rf dist",
     "build": "electron-builder"
   },
@@ -13,8 +13,8 @@
   "author": "Usman Chaudhary <usmantahir.gc.33@gmail.com>",
   "license": "ISC",
   "devDependencies": {
-    "electron": "^26.2.1",
-    "electron-builder": "^24.6.4"
+    "electron": "^26.6.10",
+    "electron-builder": "^24.13.3"
   },
   "build": {
     "productName": "Result",
