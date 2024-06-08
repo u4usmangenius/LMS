@@ -53,7 +53,7 @@
   /* padding-right: 50px; */
 }
 .signup-content .login-button:hover {
-  background-color: #001231;
+  background-color: #f97c4d;
   transition: 0.3s ease-in-out;
   letter-spacing: 3px;
 }
@@ -106,7 +106,7 @@
   text-align: center;
   width: 100%;
   height: 100%;
-  background-color: #0490ee;
+  background-color: #f97c4d;
   border: none;
   border-radius: 5px;
   color: white;
@@ -117,7 +117,7 @@
 
 .signup-image-button:hover {
   /* background-color: #ffc107; */
-  background-color: #001231;
+  background-color: #f97c4d;
 }
 .signup-image-default-text {
   color: #f00;
@@ -179,10 +179,12 @@ body {
   justify-content: space-between;
   /* background-color: #f39c12; 
   height: 60px; */
-  color: #03296b;
+  color: #000;
   padding-left: 25px;
   /* padding-bottom: 3.6px; */
   margin-bottom: -11px;
+  margin-top: -8%;
+  margin-left: 5%;
 }
 .formlist-header-row h1 {
   display: flex;
@@ -190,7 +192,7 @@ body {
   cursor: default;
 }
 .formlist-click-add-button {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   width: 151px;
   height: 44px;
@@ -205,7 +207,7 @@ body {
 }
 
 .formlist-click-add-button:hover {
-  background-color: #001231;
+  background-color: #f97c4d;
   letter-spacing: 1px;
   transition: 0.2s ease-out;
 }
@@ -362,7 +364,7 @@ body {
 }
 
 .Form-List-search-button {
-  background-color: #03296b;
+  background-color: #f97c4d;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -375,7 +377,7 @@ body {
   font-size: 11px;
 }
 .Form-List-search-button:hover {
-  background-color: #001231;
+  background-color: #f97c4d;
 }
 .Form-List-page-rows select {
   width: 61px;
@@ -436,7 +438,7 @@ body {
   background-color: #f2f2f2;
   font-size: 14.4px;
   font-weight: 1200;
-  color: #03296b;
+  color: #f97c4d;
 }
 
 .FormList-table tbody tr:nth-child(even) {
@@ -449,7 +451,7 @@ body {
 }
 
 .edit-button {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   color: #ecf0f1;
@@ -463,17 +465,17 @@ body {
 .edit-button:hover {
   transition: 0.2s ease-out;
   letter-spacing: 1px;
-  background-color: #001231;
+  background-color: #f97c4d;
 }
 .save-button {
   color: #ecf0f1;
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
 }
 
 .save-button:hover {
   transition: 0.2s ease-out;
-  background-color: #001231;
+  background-color: #f97c4d;
   letter-spacing: 1px;
 }
 .ceter-align-rows {
@@ -597,7 +599,7 @@ body {
 .FormList-edit-icons {
   cursor: pointer;
   width: 30px;
-  color: #03296b;
+  color: #f97c4d;
 }
 .FormList-delete-icon {
   color: red;
@@ -617,7 +619,7 @@ body {
   font-size: 15px;
 }
 .FormList-pagination-button {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
   color: #ecf0f1;
   border: none;
@@ -631,7 +633,7 @@ body {
 .FormList-pagination-button:hover {
   letter-spacing: 1px;
   transition: 0.2s ease-out;
-  background-color: #001231;
+  background-color: #f97c4d;
 }
 
 .FormList-pagination-button[disabled] {
@@ -646,7 +648,7 @@ body {
 }
 
 .FormList-pagination-button.active {
-  background-color: #03296b;
+  background-color: #f97c4d;
   box-shadow: 4px 0 12px rgba(84, 97, 113, 0.24);
 }
 
@@ -811,7 +813,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   letter-spacing: 2px;
 }
 .reports-ClassName {
-  /* background-color:#001231; */
+  /* background-color:#f97c4d; */
   font-size: 28px;
   color: #007bff;
   letter-spacing: 2px;
@@ -907,7 +909,7 @@ input[type="date"]::-webkit-calendar-picker-indicator {
   padding-left: 10px;
 }
 input[type="radio"]:checked {
-  color: #001231;
+  color: #f97c4d;
   background-color: #f00;
 }
 .Paid {
@@ -958,7 +960,7 @@ input[type="radio"]:checked {
   50% {
     /* background-color: #cdd; */
     /* color: #ff0000; */
-    color: #001231;
+    color: #f97c4d;
     box-shadow: 4px 0 12px rgba(245, 56, 56, 0.24);
     /* letter-spacing: 1px; */
   }

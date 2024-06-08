@@ -11,7 +11,9 @@ body {
   justify-content: center;
   align-items: center;
   height: 100vh;
-  background-color: #001231;
+  /* background-color: #; */
+  background-color: #081228;
+
   overflow: hidden;
   position: relative;
   color: #fff;
@@ -20,7 +22,6 @@ body {
 
 /* Login Form */
 .login-form {
-  margin-right: 31%;
   height: 80%;
   padding: 20px;
   text-align: left;
@@ -139,7 +140,7 @@ body {
 
 /* Login Button */
 .login-button {
-  background-color: #0490ee;
+  background-color: #f97c4d;
   color: white;
   border: none;
   border-radius: 5px;
@@ -156,7 +157,7 @@ body {
 }
 
 .login-button:hover {
-  background-color: #005f8b;
+  background-color: #f55f28;
 }
 
 /* Background Image */
@@ -165,9 +166,10 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 33%;
+  width: 28%;
+  length:40% !important;
   background-color: #fff;
-  padding-top: 14%;
+  padding-top: 7%;
   margin-right: 0.1%;
 }
 
@@ -178,7 +180,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: center;
-  height: 60%;
+  height: 80%;
   width: 100%;
 }
 
