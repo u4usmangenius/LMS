@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import React from "react";
 import { FaCheckCircle, FaInfo } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { MdAccountBalance, MdAssignmentTurnedIn, MdLogout } from "react-icons/md";
+import { MdAccountBalance, MdAssignmentTurnedIn, MdCategory, MdLogout } from "react-icons/md";
 import { IoLogOut, IoSettingsSharp } from "react-icons/io5";
 import {
   FaChalkboardTeacher,
@@ -51,6 +51,11 @@ const Sidebar = () => {
           <li>
             <NavLink to="/sidebar/books">
               <IoIosBook /> Books
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/sidebar/category">
+              <MdCategory /> Category
             </NavLink>
           </li>
           <li>
