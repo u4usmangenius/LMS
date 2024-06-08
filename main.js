@@ -29,7 +29,9 @@ const port = 8080;
 
 // import other modules here
 const bookModel = require("./backend/Models/BookModel.js");
+const LoginModel= require("./backend/Models/LoginModel.js")
 
+expressApp.use("/", LoginModel);
 expressApp.use("/", bookModel);
 
 let mainWindow;
@@ -123,6 +125,7 @@ expressApp.listen(port, () => {
 function setupAppListeners() {
   app.on("ready", () => {
     console.log("App is ready");
+    createWindow();
   });
 }
 
