@@ -34,9 +34,9 @@ router.get("/api/books", verifyToken, (req, res) => {
   });
 });
 
-// Route to paginate books
+// Route to paginate books , saerch by name and filter 
 router.post("/api/books/paginate", verifyToken, (req, res) => {
-  const { page, page_size, sortBy, sortOrder, category, author } = req.body;
+  const { page, page_size, sortBy, sortOrder, category, author, searchText } = req.body;
   const sortByColumn = sortBy || 'created_at';
   const sortDirection = sortOrder || 'desc';
   const offset = (page - 1) * page_size;
@@ -59,6 +59,11 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
     params.push(author);
   }
 
+  if (searchText) {
+    query += ` AND title LIKE ?`;
+    params.push(`%${searchText}%`);
+  }
+
   query += ` ORDER BY ${sortByColumn} ${sortDirection} LIMIT ? OFFSET ?`;
   params.push(page_size, offset);
 
@@ -67,7 +72,9 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
       console.error("Error paginating books:", err);
       res.status(500).json({ success: false, message: "Internal server error" });
     } else {
-      db.get("SELECT COUNT(*) as count FROM books", (err, row) => {
+      db.get("SELECT COUNT(*) as count FROM books WHERE 1=1" + (category ? " AND category = ?" : "") + (author ? " AND author = ?" : "") + (searchText ? " AND title LIKE ?" : ""), 
+        category ? (author ? (searchText ? [category, author, `%${searchText}%`] : [category, author]) : (searchText ? [category, `%${searchText}%`] : [category])) : (author ? (searchText ? [author, `%${searchText}%`] : [author]) : (searchText ? [`%${searchText}%`] : [])),
+      (err, row) => {
         if (err) {
           console.error("Error getting book count:", err);
           res.status(500).json({ success: false, message: "Internal server error" });
@@ -80,6 +87,7 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
     }
   });
 });
+
 
 // Route to show a specific book
 router.get("/api/books/:acc_no", verifyToken, (req, res) => {

@@ -62,11 +62,27 @@ async function insertUser() {
 // Call the function to insert the user
 insertUser();
 
-// Create Books
+//Create Categorys table
+db.run(
+  `
+  CREATE TABLE IF NOT EXISTS categories (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(255) NOT NULL,
+    created_at TIMESTAMPTZ,
+    updated_at TIMESTAMPTZ
+   )
+  `,
+  (err)=>{
+    if(err){
+      console.error("Error creating Book table:", err);
+    }
+  }
+)
+// Create Books table
 db.run(
   `
   CREATE TABLE IF NOT EXISTS books (
-    id SERIAL PRIMARY KEY,
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
     acc_no VARCHAR(255) NOT NULL UNIQUE,
     author VARCHAR(255),
     category VARCHAR(255) NOT NULL,

@@ -29,10 +29,12 @@ const port = 8080;
 
 // import other modules here
 const BookModel = require("./backend/Models/BookModel.js");
-const LoginModel= require("./backend/Models/LoginModel.js")
+const LoginModel= require("./backend/Models/LoginModel.js");
+const CategoryModel=require('./backend/Models/CategoryModel.js');
 
 expressApp.use("/", LoginModel);
 expressApp.use("/", BookModel);
+expressApp.use("/",CategoryModel);
 
 let mainWindow;
 
