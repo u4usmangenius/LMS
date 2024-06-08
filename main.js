@@ -28,11 +28,11 @@ expressApp.use(express.static(path.join(__dirname, "frontend/build")));
 const port = 8080;
 
 // import other modules here
-const bookModel = require("./backend/Models/BookModel.js");
+const BookModel = require("./backend/Models/BookModel.js");
 const LoginModel= require("./backend/Models/LoginModel.js")
 
 expressApp.use("/", LoginModel);
-expressApp.use("/", bookModel);
+expressApp.use("/", BookModel);
 
 let mainWindow;
 

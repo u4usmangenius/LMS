@@ -66,15 +66,26 @@ insertUser();
 db.run(
   `
   CREATE TABLE IF NOT EXISTS books (
-    bookId TEXT PRIMARY KEY,
-    bookName TEXT,
-    subject TEXT,
-     phone INTEGER
+    id SERIAL PRIMARY KEY,
+    acc_no VARCHAR(255) NOT NULL UNIQUE,
+    author VARCHAR(255),
+    category VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    publisher VARCHAR(255) ,
+    year INT ,
+    pages INT ,
+    binding VARCHAR(255) ,
+    remarks VARCHAR(255),
+    cost DECIMAL(10, 2) ,
+    quantity INT ,
+    image BYTEA,
+    created_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMPTZ DEFAULT CURRENT_TIMESTAMP
   )
 `,
   (err) => {
     if (err) {
-      console.error("Error creating teachers table:", err);
+      console.error("Error creating Book table:", err);
     }
   }
 );
