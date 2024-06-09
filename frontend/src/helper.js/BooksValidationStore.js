@@ -2,11 +2,14 @@ import { makeObservable, observable, action } from "mobx";
 
 class Validations {
   errors = {
-    phone: false,
-    gender: false,
-    subject: false,
-    hasError: false,
-    fullName: false,
+    aac_no: false,
+    title: false,
+    author: false,
+    publisher: false,
+    category: false,
+    cost: false,
+    quantity: false,
+    remarks: false,
   };
   constructor() {
     makeObservable(this, {
@@ -20,11 +23,14 @@ class Validations {
   validateForm() {
     let isValid = true;
     this.errors = {
-      phone: false,
-      gender: false,
-      subject: false,
-      hasError: false,
-      fullName: false,
+      aac_no: false,
+      title: false,
+      author: false,
+      publisher: false,
+      category: false,
+      cost: false,
+      quantity: false,
+      remarks: false,
     };
     this.errors.hasError = !isValid;
     return isValid;

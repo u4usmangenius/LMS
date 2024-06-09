@@ -5,6 +5,7 @@ import Error from "./Screen/error/Error";
 import Dashboard from "./Screen/dashboard/Dashboard";
 import Books from "./Screen/Books/Books";
 import Student from "./Screen/Students/Student";
+import Category from "./Screen/Category/Category";
 import About from "./Screen/About/About";
 import Sidebar from "./components/Sidebar/Sidebar";
 import Login from "./components/Login/Login";
@@ -79,6 +80,7 @@ function App() {
             <Route path="/sidebar/dashboard" element={<Dashboard />} />
             <Route path="/sidebar/students" element={<Student />} />
             <Route path="/sidebar/books" element={<Books />} />
+            <Route path="/sidebar/category" element={<Category />} />
             <Route path="/sidebar/about" element={<About />} />
             <Route path="*" element={<Error />} />
           </Route>

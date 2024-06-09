@@ -1,14 +1,7 @@
 import React, { useEffect } from "react";
 import "./Modal.css";
 import { AiFillCloseCircle } from "react-icons/ai";
-import { addSubjectStore } from "../../store/subjectsStore/addsubjectstore";
-import { validations } from "../../helper.js/SubjectValidationStore";
-import { addstudentStore } from "../../store/studentsStore/AddstudentsStore.js";
-import { addTeacherStore } from "../../store/teachersStore/AddTeacherStore";
-import { addTestStore } from "../../store/TestStore/AddTestStore";
-import { addResultStore } from "../../store/ResultStore/AddResultStore";
-import feeAccount from "../../store/FeeAccountsStore/AddFeesStore.js";
-import { withDrawExpense } from "../../store/ExpenseStore.js/WithDrawExpenseStore.js";
+import { addbookStore } from "../../store/BooksStore/AddBookStore.js";
 import { modelStore } from "../../store/ModelStore/ModelStore.js";
 
 const Modal = ({ isOpen, onClose, children }) => {
@@ -34,13 +27,8 @@ const Modal = ({ isOpen, onClose, children }) => {
       return;
     }
 
-    addstudentStore.clearFormFields();
-    addSubjectStore.clearFormFields();
-    addTeacherStore.clearFormFields();
-    addTestStore.clearFormFields();
-    addResultStore.clearFormFields();
-    feeAccount.clearFormFields();
-    withDrawExpense.clearFormFields();
+    addbookStore.clearFormFields();
+    // add others for clearn for their form fields(clearformfields)
 
     onClose();
   };

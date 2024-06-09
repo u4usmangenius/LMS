@@ -166,11 +166,13 @@ body {
   top: 0;
   right: 0;
   bottom: 0;
-  width: 28%;
+  width: 30%;
   length:40% !important;
   background-color: #fff;
-  padding-top: 7%;
+  padding-top: 1%;
   margin-right: 0.1%;
+  padding-left: 2%;
+  padding-right:2%;
 }
 
 .login-background-image img {

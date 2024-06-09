@@ -1,16 +1,16 @@
 import React from "react";
 import { modelStore } from "../../store/ModelStore/ModelStore";
 import Modal from "../model/Modal";
-import AddBooks from "./AddBooks";
+import AddCategory from "./AddCategory";
 import { observer } from "mobx-react-lite";
 
-const Books = () => {
+const Category = () => {
   return (
     <>
       {/* <Header/> */}
       <div className="formlist-list-container">
         <div className="formlist-header-row">
-          <h1>Books</h1>
+          <h1>Category</h1>
           {/* <TestSearchInput/> */}
           <button
             className="formlist-click-add-button"
@@ -20,7 +20,7 @@ const Books = () => {
               // await feeAccount.getCurrentMonthDates();
             }}
           >
-            Add Books
+            Add Category
           </button>
         </div>
         <div>
@@ -30,7 +30,7 @@ const Books = () => {
                 isOpen={modelStore.isModalOpen}
                 onClose={modelStore.closeModel}
               >
-                <AddBooks />
+                <AddCategory />
               </Modal>
             </>
           ) : null}
@@ -40,4 +40,4 @@ const Books = () => {
   );
 };
 
-export default observer(Books);
+export default observer(Category);
