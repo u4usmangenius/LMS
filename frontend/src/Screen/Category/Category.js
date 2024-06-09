@@ -3,6 +3,7 @@ import { modelStore } from "../../store/ModelStore/ModelStore";
 import Modal from "../model/Modal";
 import AddCategory from "./AddCategory";
 import { observer } from "mobx-react-lite";
+import CategoryList from "./CategoryList";
 
 const Category = () => {
   return (
@@ -23,19 +24,18 @@ const Category = () => {
             Add Category
           </button>
         </div>
-        <div>
-          {modelStore.isModalOpen ? (
-            <>
-              <Modal
-                isOpen={modelStore.isModalOpen}
-                onClose={modelStore.closeModel}
-              >
-                <AddCategory />
-              </Modal>
-            </>
-          ) : null}
-        </div>
-      </div>{" "}
+      </div>
+      {modelStore.isModalOpen ? (
+        <>
+          <Modal
+            isOpen={modelStore.isModalOpen}
+            onClose={modelStore.closeModel}
+          >
+            <AddCategory />
+          </Modal>
+        </>
+      ) : null}
+      <CategoryList />
     </>
   );
 };
