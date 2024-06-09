@@ -29,7 +29,7 @@ router.get("/api/books", verifyToken, (req, res) => {
         cost: book.cost,
         quantity: book.quantity
       }));
-      res.json({ success: true, books });
+      res.status(200).json({ success: true, books });
     }
   });
 });
@@ -81,7 +81,7 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
         } else {
           const totalCount = row.count;
           const totalPages = Math.ceil(totalCount / page_size);
-          res.json({ success: true, books: rows, totalPages });
+          res.status(200).json({ success: true, books: rows, totalPages });
         }
       });
     }
@@ -118,7 +118,7 @@ router.get("/api/books/:acc_no", verifyToken, (req, res) => {
           cost: book.cost,
           quantity: book.quantity
         };
-        res.json({ success: true, book: bookDetails });
+        res.status(200).json({ success: true, book: bookDetails });
       } else {
         res.status(404).json({ success: false, message: "Book not found" });
       }
@@ -142,7 +142,7 @@ router.post("/api/books", verifyToken, (req, res) => {
       console.error("Error creating book:", err);
       res.status(500).json({ success: false, message: "Internal server error" });
     } else {
-      res.status(201).json({ success: true, bookId: this.lastID });
+      res.status(200).json({ success: true, bookId: this.lastID });
     }
   });
 });
@@ -165,7 +165,7 @@ router.put("/api/books/:acc_no", verifyToken, (req, res) => {
       console.error("Error updating book:", err);
       res.status(500).json({ success: false, message: "Internal server error" });
     } else {
-      res.json({ success: true, message: "Book updated successfully" });
+      res.status(200).json({ success: true, message: "Book updated successfully" });
     }
   });
 });
@@ -181,7 +181,7 @@ router.delete("/api/books/:acc_no",verifyToken,  (req, res) => {
       console.error("Error deleting book:", err);
       res.status(500).json({ success: false, message: "Internal server error" });
     } else {
-      res.status(204).json({ success: true, message: "Book deleted successfully" });
+      res.status(200).json({ success: true, message: "Book deleted successfully" });
     }
   });
 });

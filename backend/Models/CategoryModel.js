@@ -11,7 +11,7 @@ router.get("/api/categories", async (req, res) => {
       console.error("Error fetching categories:", err);
       res.status(500).json({ error: "Failed to fetch categories" });
     } else {
-      res.json(rows);
+      res.status(200).json(rows);
     }
   });
 });
@@ -52,7 +52,7 @@ router.post("/api/categories/paginate", async (req, res) => {
           } else {
             const totalCount = row.count;
             const totalPages = Math.ceil(totalCount / page_size);
-            res.json({ categories: rows, totalPages });
+            res.status(200).json({ categories: rows, totalPages });
           }
         });
       }
@@ -68,7 +68,7 @@ router.get("/api/categories/:id", async (req, res) => {
       console.error("Error fetching category:", err);
       res.status(500).json({ error: "Failed to fetch category" });
     } else {
-      res.json(row);
+      res.status(200).json(row);
     }
   });
 });
@@ -87,7 +87,7 @@ router.post("/api/categories", async (req, res) => {
       console.error("Error creating category:", err);
       res.status(500).json({ error: "Failed to create category" });
     } else {
-      res.status(201).json({ id: this.lastID, name });
+      res.status(200).json({ id: this.lastID, name });
     }
   });
 });
@@ -107,7 +107,7 @@ router.put("/api/categories/:id", async (req, res) => {
         console.error("Error updating category:", err);
         res.status(500).json({ error: "Failed to update category" });
       } else {
-        res.json({ id: req.params.id, name });
+        res.status(200).json({ id: req.params.id, name });
       }
     });
   }); 
@@ -121,7 +121,7 @@ router.delete("/api/categories/:id", async (req, res) => {
       console.error("Error deleting category:", err);
       res.status(500).json({ error: "Failed to delete category" });
     } else {
-      res.status(204).send();
+      res.status(200).send();
     }
   });
 });
