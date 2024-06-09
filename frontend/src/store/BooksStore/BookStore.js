@@ -10,6 +10,7 @@ class BookStore {
   searchText = "";
   selectedFilter = "all";
   books = [];
+  categories = [];
   showEditModal = false;
   editingbook = null;
   loading = false;
@@ -17,6 +18,7 @@ class BookStore {
   totalPages = 1;
   mouseHover = false;
   Category = "";
+  FiltreCategoryName = "";
 
   constructor() {
     makeObservable(this, {
@@ -25,7 +27,9 @@ class BookStore {
       searchText: observable,
       selectedFilter: observable,
       Category: observable,
+      FiltreCategoryName: observable,
       books: observable,
+      categories: observable,
       showEditModal: observable,
       editingbook: observable,
       mouseHover: observable,
@@ -51,22 +55,19 @@ class BookStore {
     });
   }
   async getDataBYCategory() {
-    const ClassName = this.Category;
     try {
       const token = localStorage.getItem("bearer token");
       const headers = {
         Authorization: `${token}`,
       };
-      const response = await axios.post(
-        "http://localhost:8080/api/books/ClassName",
-        { ClassName },
-        {
-          headers,
-        }
-      );
+      const response = await axios.get("http://localhost:8080/api/categories", {
+        headers,
+      });
 
       if (response.status === 200) {
-        this.setbooks(response.data.data);
+        this.categories = response.data;
+        console.log("usman,rows", this.categories);
+        console.log("usman,response", response.data);
       } else {
         console.error("Error:", response.data.error);
       }
@@ -131,20 +132,23 @@ class BookStore {
         Authorization: `${token}`,
       };
       const response = await axios.post(
-        "http://localhost:8080/api/book",
+        "http://localhost:8080/api/books/paginate",
         {
           page: this.currentPage,
           pageSize: this.rowsPerPage,
           filter: this.selectedFilter,
+          category: this.FiltreCategoryName,
           search: this.searchText,
-          sortColumn: "bookName",
-          sortOrder: "asc",
+          // sortBy: "acc_no",
+          sortBy: "",
+          sortOrder: "desc",
         },
         { headers }
       );
 
       if (this.currentPage === 1) {
         this.books = response.data.books;
+        console.log("usman this.books", this.books);
       } else {
         this.books = [];
         this.books = [...this.books, ...response.data.books];
@@ -163,10 +167,14 @@ class BookStore {
 
   handleSaveEdit() {
     const booksInfo = {
-      bookName: addbookStore.formData.bookName,
-      SubjectName: addbookStore.formData.SubjectName,
-      ClassName: addbookStore.formData.ClassName,
-      TotalMarks: addbookStore.formData.TotalMarks,
+      acc_no: addbookStore.formData.acc_no,
+      title: addbookStore.formData.title,
+      author: addbookStore.formData.author,
+      publisher: addbookStore.formData.publisher,
+      category: addbookStore.formData.category,
+      remarks: addbookStore.formData.remarks,
+      cost: addbookStore.formData.cost,
+      quantity: addbookStore.formData.quantity,
     };
     const bookId = addbookStore.bookId;
     const token = localStorage.getItem("bearer token");
@@ -177,10 +185,14 @@ class BookStore {
       .put(
         `http://localhost:8080/api/books/${bookId}`,
         {
-          bookName: booksInfo.bookName,
-          ClassName: booksInfo.ClassName,
-          SubjectName: booksInfo.SubjectName,
-          TotalMarks: booksInfo.TotalMarks,
+          acc_no: booksInfo.acc_no,
+          title: booksInfo.title,
+          author: booksInfo.author,
+          publisher: booksInfo.publisher,
+          category: booksInfo.category,
+          remarks: booksInfo.remarks,
+          cost: booksInfo.cost,
+          quantity: booksInfo.quantity,
         },
         {
           headers,
@@ -213,8 +225,9 @@ class BookStore {
   }
 
   async handleDelete(book) {
+    console.log("first,returnrrrrrrrrrrrrr", book);
     const confirmed = await this.showConfirm(
-      `Are you sure you want to delete ${book.bookName}?`
+      `Are you sure you want to delete ${book.acc_no}?`
     );
     if (confirmed) {
       const token = localStorage.getItem("bearer token");
@@ -222,7 +235,7 @@ class BookStore {
         Authorization: `${token}`,
       };
       axios
-        .delete(`http://localhost:8080/api/books/${book.bookId}`, { headers })
+        .delete(`http://localhost:8080/api/books/${book.id}`, { headers })
         .then((response) => {
           if (response.status === 200) {
             const updatedbooks = this.books.filter(
