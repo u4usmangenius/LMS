@@ -34,9 +34,22 @@ router.get("/api/books", verifyToken, (req, res) => {
   });
 });
 
+// {
+//   "page": 1,
+//   "page_size": 10,
+//   "sortBy": "created_at",
+//   "sortOrder": "desc",
+//   "category": "Programming",
+//   "author": "John Doe",
+//   "searchText": "JavaScript"
+// }
+
+
 // Route to paginate books , saerch by name and filter 
 router.post("/api/books/paginate", verifyToken, (req, res) => {
-  const { page, page_size, sortBy, sortOrder, category, author, searchText } = req.body;
+  const {  sortBy, sortOrder, category, author, searchText } = req.body;
+  const page = parseInt(req.body.page) || 1;
+    const page_size = parseInt(req.body.pageSize) || 5;
   const sortByColumn = sortBy || 'created_at';
   const sortDirection = sortOrder || 'desc';
   const offset = (page - 1) * page_size;
