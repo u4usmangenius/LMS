@@ -92,7 +92,7 @@ router.post("/api/books/paginate/category", verifyToken, (req, res) => {
 
 // Route to paginate books , saerch by name and filter , having some updates from usman
 router.post("/api/books/paginate", verifyToken, (req, res) => {
-  const { sortBy, sortOrder, search } = req.body;
+  const {  sortBy, sortOrder, category, author, searchText } = req.body;
   const page = parseInt(req.body.page) || 1;
   const page_size = parseInt(req.body.pageSize) || 5;
   const filter = req.body.filter || "";
