@@ -135,7 +135,10 @@ const BookList = () => {
         <button
           className="FormList-pagination-button"
           onClick={() => handlePageChange(bookStore.currentPage + 1)}
-          disabled={bookStore.currentPage === bookStore.totalPages}
+          disabled={
+            bookStore.currentPage === bookStore.totalPages ||
+            bookStore.books?.length === 0
+          }
         >
           Next
         </button>
