@@ -90,7 +90,7 @@ router.post("/api/books/paginate/category", verifyToken, (req, res) => {
 //   "searchText": "JavaScript"
 // }
 
-
+//update.........
 // Route to paginate books , saerch by name and filter , having some updates from usman
 router.post("/api/books/paginate", verifyToken, (req, res) => {
   const { sortBy, sortOrder, search, category } = req.body; // Include category in destructuring
@@ -125,6 +125,7 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
     filter === "remarks" ||
     filter === "cost" ||
     filter === "quantity"
+
   ) {
     query += ` AND ${filter} LIKE ?`;
     params.push(`%${search}%1`);
