@@ -48,6 +48,7 @@ class BookStore {
       setbooks: action,
       setTotalPages: action,
       fetchDataFromBackend: action,
+      fetchCategorizedData: action,
       handleEdit: action,
       handleSaveEdit: action,
       handleCancelEdit: action,
@@ -124,6 +125,44 @@ class BookStore {
     this.loading = isLoading;
   }
 
+  async fetchCategorizedData() {
+    try {
+      this.setLoading(true);
+      const token = localStorage.getItem("bearer token");
+      const headers = {
+        Authorization: `${token}`,
+      };
+      const response = await axios.post(
+        "http://localhost:8080/api/books/paginate/category",
+        {
+          page: this.currentPage,
+          page_size: this.rowsPerPage,
+          category: this.FiltreCategoryName,
+          search: this.searchText,
+          // sortBy: "acc_no",
+          sortBy: "",
+          sortOrder: "desc",
+        },
+        { headers }
+      );
+
+      if (this.currentPage === 1) {
+        this.books = [];
+        console.log("before updating books", this.books);
+        this.books = response.data.books;
+        console.log("after updating books", this.books);
+        console.log("usman this.books", this.books);
+      } else {
+        this.books = [];
+        this.books = [...this.books, ...response.data.books];
+      }
+      this.totalPages = response.data.totalPages;
+      this.loading = false;
+    } catch (error) {
+      console.error("Error fetching books:", error);
+      this.setLoading(false);
+    }
+  }
   async fetchDataFromBackend(page) {
     try {
       this.setLoading(true);
@@ -137,7 +176,7 @@ class BookStore {
           page: this.currentPage,
           pageSize: this.rowsPerPage,
           filter: this.selectedFilter,
-          category: this.FiltreCategoryName,
+          category: this.FiltreCategoryName ? this.FiltreCategoryName : "",
           search: this.searchText,
           // sortBy: "acc_no",
           sortBy: "",

@@ -14,15 +14,12 @@ const BookList = () => {
   // below line for getting data by filter category
   const { FiltreClassName } = { ...bookStore };
 
+  // useEffect(() => {
+  //   bookStore.fetchDataFromBackend(1);
+  // }, []);
   useEffect(() => {
     bookStore.fetchDataFromBackend(1);
-  }, []);
-  useEffect(() => {
-    if (bookStore.FiltreCategoryName) {
-      bookStore.fetchDataFromBackend(1);
-    }
   }, [bookStore.FiltreCategoryName]);
-
   useEffect(() => {
     bookStore.getDataBYCategory();
   }, []);
