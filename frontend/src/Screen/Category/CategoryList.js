@@ -55,7 +55,7 @@ const CategoryList = () => {
         <div className="Form-list-container">
           <div className="formlist--search-end-row">
             <h2>Showing Categories</h2>
-            <CategorySearchInput /> 
+            <CategorySearchInput />
           </div>
 
           {categoryStore.isLoading ? (
@@ -95,33 +95,27 @@ const CategoryList = () => {
                   ))}
                 </tbody>
               </table>
-              <div className="FormList-pagination-header">
-                <button
-                  onClick={() =>
-                    handlePageChange(categoryStore.currentPage - 1)
-                  }
-                  disabled={categoryStore.currentPage === 1}
-                  className="FormList-pagination-button"
-                >
-                  Prev
-                </button>
-                <div className="page-count">{categoryStore.currentPage}</div>
-                <button
-                  className="FormList-pagination-button"
-                  onClick={() =>
-                    handlePageChange(categoryStore.currentPage + 1)
-                  }
-                  disabled={
-                    categoryStore.currentPage === categoryStore.totalPages
-                  }
-                >
-                  Next
-                </button>
-              </div>
             </div>
           )}
         </div>
       )}
+      <div className="FormList-pagination-header">
+        <button
+          onClick={() => handlePageChange(categoryStore.currentPage - 1)}
+          disabled={categoryStore.currentPage === 1}
+          className="FormList-pagination-button"
+        >
+          Prev
+        </button>
+        <div className="page-count">{categoryStore.currentPage}</div>
+        <button
+          className="FormList-pagination-button"
+          onClick={() => handlePageChange(categoryStore.currentPage + 1)}
+          disabled={categoryStore.currentPage === categoryStore.totalPages}
+        >
+          Next
+        </button>
+      </div>
     </>
   );
 };

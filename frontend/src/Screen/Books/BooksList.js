@@ -14,9 +14,12 @@ const BookList = () => {
   // below line for getting data by filter category
   const { FiltreClassName } = { ...bookStore };
 
+  // useEffect(() => {
+  //   bookStore.fetchDataFromBackend(1);
+  // }, []);
   useEffect(() => {
     bookStore.fetchDataFromBackend(1);
-  }, []);
+  }, [bookStore.FiltreCategoryName]);
   useEffect(() => {
     bookStore.getDataBYCategory();
   }, []);
@@ -117,25 +120,25 @@ const BookList = () => {
                 ))}
               </tbody>
             </table>
-            <div className="FormList-pagination-header">
-              <button
-                onClick={() => handlePageChange(bookStore.currentPage - 1)}
-                disabled={bookStore.currentPage === 1}
-                className="FormList-pagination-button"
-              >
-                Prev
-              </button>
-              <div className="page-count">{bookStore.currentPage}</div>
-              <button
-                className="FormList-pagination-button"
-                onClick={() => handlePageChange(bookStore.currentPage + 1)}
-                disabled={bookStore.currentPage === bookStore.totalPages}
-              >
-                Next
-              </button>
-            </div>
           </div>
         )}
+      </div>
+      <div className="FormList-pagination-header">
+        <button
+          onClick={() => handlePageChange(bookStore.currentPage - 1)}
+          disabled={bookStore.currentPage === 1}
+          className="FormList-pagination-button"
+        >
+          Prev
+        </button>
+        <div className="page-count">{bookStore.currentPage}</div>
+        <button
+          className="FormList-pagination-button"
+          onClick={() => handlePageChange(bookStore.currentPage + 1)}
+          disabled={bookStore.currentPage === bookStore.totalPages}
+        >
+          Next
+        </button>
       </div>
     </>
   );
