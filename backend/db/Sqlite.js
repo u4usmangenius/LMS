@@ -80,7 +80,7 @@ db.run(
 //create Student tabel 
 db.run(
   `
- CREATE TABLE IF NOT EXISTS student (
+ CREATE TABLE IF NOT EXISTS students (
   id INTEGER PRIMARY KEY AUTOINCREMENT,
   roll_no INTEGER NOT NULL,
   name VARCHAR(255) NOT NULL,

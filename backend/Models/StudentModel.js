@@ -4,7 +4,7 @@ const db = require("../db/Sqlite").db;
 const { verifyToken } = require("./authMiddleware");
 
 // Route to list all students
-router.get("/api/students", verifyToken, (req, res) => {
+router.get("/api/students",  (req, res) => {
   const query = `
     SELECT id, roll_no, name, address, phone_no, batch_year, batch_time, gender, department_name, image
     FROM students
@@ -21,10 +21,11 @@ router.get("/api/students", verifyToken, (req, res) => {
 });
 
 // Route to paginate students with filters
-router.post("/api/students/paginate", verifyToken, (req, res) => {
-  const { sortBy, sortOrder, department_name, batch_time, batch_year, searchText } = req.body;
+router.post("/api/students/paginate", (req, res) => {
+  const { sortBy, sortOrder, department_name, batch_time, batch_year, search } = req.body;
   const page = parseInt(req.body.page) || 1;
   const page_size = parseInt(req.body.pageSize) || 5;
+  const filter = req.body.filter || "";
   const sortByColumn = sortBy || "created_at";
   const sortDirection = sortOrder || "desc";
   const offset = (page - 1) * page_size;
@@ -37,25 +38,44 @@ router.post("/api/students/paginate", verifyToken, (req, res) => {
 
   const params = [];
 
-  if (department_name) {
+  if (department_name && department_name.trim() !== "") {
     query += ` AND department_name = ?`;
     params.push(department_name);
   }
 
-  if (batch_time) {
+  if (batch_time && batch_time.trim() !== "") {
     query += ` AND batch_time = ?`;
     params.push(batch_time);
   }
 
-  if (batch_year) {
+  if (batch_year && batch_year.trim() !== "") {
     query += ` AND batch_year = ?`;
     params.push(batch_year);
   }
 
-  if (searchText) {
-    query += ` AND (roll_no LIKE ? OR name LIKE ? OR address LIKE ? OR phone_no LIKE ? OR gender LIKE ?)`;
-    const search = `%${searchText}%`;
-    params.push(search, search, search, search, search);
+  if (
+    filter === "roll_no" ||
+    filter === "name" ||
+    filter === "address" ||
+    filter === "phone_no" ||
+    filter === "batch_year" ||
+    filter === "batch_time" ||
+    filter === "gender" ||
+    filter === "department_name"
+  ) {
+    query += ` AND ${filter} LIKE ?`;
+    params.push(`%${search}%`);
+  } else if (filter === "all") {
+    query += ` AND (roll_no LIKE ? OR name LIKE ? OR address LIKE ? OR phone_no LIKE ? OR gender LIKE ? OR department_name LIKE ?)`;
+    const search = `%${search}%`;
+    params.push(
+      `%${search}%`,
+      `%${search}%`,
+      `%${search}%`,
+      `%${search}%`,
+      `%${search}%`,
+      `%${search}%`
+    );
   }
 
   query += ` ORDER BY ${sortByColumn} ${sortDirection} LIMIT ? OFFSET ?`;
@@ -70,12 +90,12 @@ router.post("/api/students/paginate", verifyToken, (req, res) => {
         + (department_name ? " AND department_name = ?" : "")
         + (batch_time ? " AND batch_time = ?" : "")
         + (batch_year ? " AND batch_year = ?" : "")
-        + (searchText ? " AND (roll_no LIKE ? OR name LIKE ? OR address LIKE ? OR phone_no LIKE ? OR gender LIKE ?)" : ""),
+        + (search ? " AND (roll_no LIKE ? OR name LIKE ? OR address LIKE ? OR phone_no LIKE ? OR gender LIKE ? OR department_name LIKE ?)" : ""),
         [
           ...(department_name ? [department_name] : []),
           ...(batch_time ? [batch_time] : []),
           ...(batch_year ? [batch_year] : []),
-          ...(searchText ? [search, search, search, search, search] : [])
+          ...(search ? [search, search, search, search, search, search] : [])
         ],
         (err, row) => {
           if (err) {
@@ -92,8 +112,9 @@ router.post("/api/students/paginate", verifyToken, (req, res) => {
   });
 });
 
+
 // Route to show a specific student
-router.get("/api/students/:roll_no", verifyToken, (req, res) => {
+router.get("/api/students/:roll_no", (req, res) => {
   const roll_no = req.params.roll_no;
   const query = `
     SELECT id, roll_no, name, address, phone_no, batch_year, batch_time, gender, department_name, image
@@ -116,7 +137,7 @@ router.get("/api/students/:roll_no", verifyToken, (req, res) => {
 });
 
 // Route to create a new student
-router.post("/api/students", verifyToken, (req, res) => {
+router.post("/api/students", (req, res) => {
   const {
     roll_no,
     name,
@@ -157,7 +178,7 @@ router.post("/api/students", verifyToken, (req, res) => {
 });
 
 // Route to update an existing student
-router.put("/api/students/:studentId", verifyToken, (req, res) => {
+router.put("/api/students/:studentId",  (req, res) => {
   const studentId = req.params.studentId;
   const {
     roll_no,
