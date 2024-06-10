@@ -7,7 +7,7 @@ import { categoryStore } from "../../store/CategoryStore/CategoryStore";
 import InputMask from "react-input-mask";
 import "../styles/AddForm.css";
 import { modelStore } from "../../store/ModelStore/ModelStore";
-const AddCategory = ({ onClose }) => {
+const AddCategory = () => {
   useEffect(() => {
     if (addCategoryStore.formData.category_Name) {
       addCategoryStore.editORsubmit = true;

@@ -7,13 +7,6 @@ const SearchInput = () => {
   const handleSearchTextChange = (text) => {
     categoryStore.setSearchText(text);
   };
-  const handleMouseEnter = () => {
-    if (categoryStore.mouseHover) {
-      categoryStore.mouseHover = false;
-    } else {
-      categoryStore.mouseHover = true;
-    }
-  };
 
   return (
     <>
@@ -30,7 +23,7 @@ const SearchInput = () => {
           <input
             type="text"
             className="FormList-text-input"
-            placeholder="Search for a test"
+            placeholder="Search for a category"
             value={categoryStore.searchText}
             onChange={(e) => {
               categoryStore.setSearchText(e.target.value);

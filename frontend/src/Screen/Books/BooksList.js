@@ -43,28 +43,28 @@ const BookList = () => {
   return (
     <>
       <div className="Form-list-container">
-        {/* <div className="formlist--search-row"> */}
-        {/* show categories filter */}
-        {/* <div className="Form-search-bar">
-          <select
-            className="Form-filter-ClassName"
-            value={bookStore.FiltreCategoryName}
-            onChange={(e) => {
-              bookStore.FiltreCategoryName = e.target.value;
-              console.log(bookStore.FiltreCategoryName,"-------------------")
-            }}
-          >
-            <option value="">Categories</option>
-            {bookStore.categories?.map((categories, index) => (
-              <option key={index} value={categories.name}>
-                {categories.name}
-              </option>
-            ))}
-          </select>
-        </div> */}
-        {/* </div> */}
-        <div className="formlist--search-end-row">
-          <h2>Showing Books</h2>
+        <div className="formlist--search-row">
+          {/* show categories filter */}
+          <div className="Form-search-bar">
+            <select
+              className="Form-filter-ClassName"
+              value={bookStore.FiltreCategoryName}
+              onChange={(e) => {
+                bookStore.FiltreCategoryName = e.target.value;
+                console.log(
+                  bookStore.FiltreCategoryName,
+                  "-------------------"
+                );
+              }}
+            >
+              <option value="">Categories</option>
+              {bookStore.categories?.map((categories, index) => (
+                <option key={index} value={categories.name}>
+                  {categories.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <BookSearchInput />
         </div>
 

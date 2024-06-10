@@ -4,6 +4,7 @@ import { AiFillCloseCircle } from "react-icons/ai";
 import { addbookStore } from "../../store/BooksStore/AddBookStore.js";
 import { modelStore } from "../../store/ModelStore/ModelStore.js";
 import { addCategoryStore } from "../../store/CategoryStore/AddCategoryStore.js";
+import { addDepartmentStore } from "../../store/DepartmentStore/AddDepartmentStore.js";
 
 const Modal = ({ isOpen, onClose, children }) => {
   useEffect(() => {
@@ -28,8 +29,9 @@ const Modal = ({ isOpen, onClose, children }) => {
       return;
     }
 
-    addbookStore.clearFormFields();
     addCategoryStore.clearFormFields();
+    addbookStore.clearFormFields();
+    addDepartmentStore.clearFormFields();
     // add others for clearn for their form fields(clearformfields)
 
     onClose();
