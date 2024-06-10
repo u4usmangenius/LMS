@@ -21,7 +21,7 @@ router.get("/api/students",  (req, res) => {
 });
 
 // Route to paginate students with filters
-router.post("/api/students/paginate", (req, res) => {
+router.post("/api/students/paginate", verifyToken,(req, res) => {
   const { sortBy, sortOrder, department_name, batch_time, batch_year, search } = req.body;
   const page = parseInt(req.body.page) || 1;
   const page_size = parseInt(req.body.pageSize) || 5;
