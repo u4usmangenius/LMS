@@ -17,6 +17,12 @@ const BookList = () => {
   useEffect(() => {
     bookStore.fetchDataFromBackend(1);
   }, []);
+  // useEffect(() => {
+  //   if (bookStore.FiltreCategoryName) {
+  //     bookStore.fetchDataFromBackend(1);
+  //   }
+  // }, [bookStore.FiltreCategoryName]);
+
   useEffect(() => {
     bookStore.getDataBYCategory();
   }, []);
