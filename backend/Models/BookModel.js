@@ -90,9 +90,10 @@ router.post("/api/books/paginate/category", verifyToken, (req, res) => {
 //   "searchText": "JavaScript"
 // }
 
+
 // Route to paginate books , saerch by name and filter , having some updates from usman
 router.post("/api/books/paginate", verifyToken, (req, res) => {
-  const {  sortBy, sortOrder, search } = req.body;
+  const { sortBy, sortOrder, search, category } = req.body; // Include category in destructuring
   const page = parseInt(req.body.page) || 1;
   const page_size = parseInt(req.body.pageSize) || 5;
   const filter = req.body.filter || "";
@@ -108,6 +109,13 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
 
   const params = [];
 
+  // Add condition to filter by category if a value is received and not empty
+  if (category && category.trim() !== "") {
+    // Check if category is provided and not empty
+    query += ` AND category = ?`;
+    params.push(category);
+  }
+
   if (
     filter === "acc_no" ||
     filter === "title" ||
@@ -119,7 +127,7 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
     filter === "quantity"
   ) {
     query += ` AND ${filter} LIKE ?`;
-    params.push(`%${search}%`);
+    params.push(`%${search}%1`);
   } else if (filter === "all") {
     // Handle global search
     query += ` AND (acc_no LIKE ? OR title LIKE ? OR author LIKE ? OR publisher LIKE ? OR category LIKE ? OR remarks LIKE ? OR cost LIKE ? OR quantity LIKE ?)`;
@@ -159,7 +167,6 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
     }
   });
 });
-
 // Route to show a specific book
 router.get("/api/books/:acc_no", verifyToken, (req, res) => {
   const acc_no = req.params.acc_no;
