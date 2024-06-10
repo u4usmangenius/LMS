@@ -120,25 +120,25 @@ const BookList = () => {
                 ))}
               </tbody>
             </table>
-            <div className="FormList-pagination-header">
-              <button
-                onClick={() => handlePageChange(bookStore.currentPage - 1)}
-                disabled={bookStore.currentPage === 1}
-                className="FormList-pagination-button"
-              >
-                Prev
-              </button>
-              <div className="page-count">{bookStore.currentPage}</div>
-              <button
-                className="FormList-pagination-button"
-                onClick={() => handlePageChange(bookStore.currentPage + 1)}
-                disabled={bookStore.currentPage === bookStore.totalPages}
-              >
-                Next
-              </button>
-            </div>
           </div>
         )}
+      </div>
+      <div className="FormList-pagination-header">
+        <button
+          onClick={() => handlePageChange(bookStore.currentPage - 1)}
+          disabled={bookStore.currentPage === 1}
+          className="FormList-pagination-button"
+        >
+          Prev
+        </button>
+        <div className="page-count">{bookStore.currentPage}</div>
+        <button
+          className="FormList-pagination-button"
+          onClick={() => handlePageChange(bookStore.currentPage + 1)}
+          disabled={bookStore.currentPage === bookStore.totalPages}
+        >
+          Next
+        </button>
       </div>
     </>
   );

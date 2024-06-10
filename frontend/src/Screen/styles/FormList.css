@@ -164,6 +164,7 @@ body {
   display: flex;
   align-items: center;
   justify-content: space-between;
+  margin-left: 5.15%;
 }
 .formlist--search-end-row {
   display: flex;
@@ -628,6 +629,8 @@ body {
   flex-direction: row;
   gap: 20px;
   margin-bottom: 21px;
+  margin-left: 7% !important;
+  color: #000;
 }
 .page-count {
   font-size: 15px;
