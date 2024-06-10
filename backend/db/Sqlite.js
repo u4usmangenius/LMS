@@ -61,7 +61,22 @@ async function insertUser() {
 
 // Call the function to insert the user
 insertUser();
-
+//department tabel 
+db.run(
+  `
+  CREATE TABLE IF NOT EXISTS departments (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    name VARCHAR(350) NOT NULL,
+    created_at TIMESTAMPTZ,
+    updated_at TIMESTAMPTZ
+   )
+  `,
+  (err)=>{
+    if(err){
+      console.error("Error creating Book table:", err);
+    }
+  }
+)
 //create Student tabel 
 db.run(
   `

@@ -31,10 +31,12 @@ const port = 8080;
 const BookModel = require("./backend/Models/BookModel.js");
 const LoginModel= require("./backend/Models/LoginModel.js");
 const CategoryModel=require('./backend/Models/CategoryModel.js');
+const DepartmentModel=require('./backend/Models/DepartmentModel.js')
 
 expressApp.use("/", LoginModel);
 expressApp.use("/", BookModel);
 expressApp.use("/",CategoryModel);
+expressApp.use("/",DepartmentModel);
 
 let mainWindow;
 
