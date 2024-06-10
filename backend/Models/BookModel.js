@@ -36,6 +36,50 @@ router.get("/api/books", verifyToken, (req, res) => {
   });
 });
 
+// Route to apply fillter of category with pagination 
+router.post("/api/books/paginate/category", verifyToken, (req, res) => {
+  const { category } = req.body;
+  const page = parseInt(req.body.page) || 1;
+  const page_size = parseInt(req.body.page_size) || 5;
+  const offset = (page - 1) * page_size;
+
+  let query = `
+    SELECT id, acc_no, title, publisher, year, pages, binding, remarks, cost, quantity, author, category
+    FROM books
+    WHERE 1=1
+  `;
+
+  const params = [];
+
+  // Apply category filter if provided
+  if (category) {
+    query += ` AND category = ?`;
+    params.push(category);
+  }
+
+  query += ` LIMIT ? OFFSET ?`;
+  params.push(page_size, offset);
+
+  db.all(query, params, (err, rows) => {
+    if (err) {
+      console.error("Error paginating books:", err);
+      res.status(500).json({ success: false, message: "Internal server error" });
+    } else {
+      db.get("SELECT COUNT(*) as count FROM books", (err, row) => {
+        if (err) {
+          console.error("Error getting book count:", err);
+          res.status(500).json({ success: false, message: "Internal server error" });
+        } else {
+          const totalCount = row.count;
+          const totalPages = Math.ceil(totalCount / page_size);
+          res.status(200).json({ success: true, books: rows, totalPages });
+        }
+      });
+    }
+  });
+});
+
+
 // {
 //   "page": 1,
 //   "page_size": 10,
@@ -48,7 +92,7 @@ router.get("/api/books", verifyToken, (req, res) => {
 
 // Route to paginate books , saerch by name and filter , having some updates from usman
 router.post("/api/books/paginate", verifyToken, (req, res) => {
-  const { sortBy, sortOrder, category, author, search } = req.body;
+  const { sortBy, sortOrder, search } = req.body;
   const page = parseInt(req.body.page) || 1;
   const page_size = parseInt(req.body.pageSize) || 5;
   const filter = req.body.filter || "";
