@@ -15,7 +15,7 @@ const CategoryList = () => {
     addCategoryStore.setcategorysData(category);
     console.log(category.categoryId, "asd");
     modelStore.setisModalOpen(true);
-       
+
     // openAddcategorysModal();
   };
   const handleDelete = (category) => {
@@ -48,69 +48,81 @@ const CategoryList = () => {
     categoryStore.setSelectedFilter(filter);
   };
   return (
-    <div className="Form-list-container">
-      <div className="formlist--search-end-row">
-        <h2>Showing Categories</h2>
-        <CategorySearchInput />
-      </div>
-
+    <>
       {categoryStore.isLoading ? (
         <LoadingSpinner />
-      ) : !categoryStore.category?.length ? (
-        <div className="noData-container">
-          <img src={NoData} alt="No Data to Show" className="noData-img" />
-        </div>
       ) : (
-        <div className="FormList-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Category Id</th>
-                <th>Category Name</th>
-                <th>Actions</th>
-              </tr>
-            </thead>
-            <tbody>
-              {categoryStore.category?.map((category) => (
-                <tr key={category.id}>
-                  <td>{category.id}</td>
-                  <td>{category.name}</td>
-                  <td className="FormList-edit-icon">
-                    <div
-                      onClick={() => handleEdit(category)}
-                      className="FormList-edit-icons"
-                    >
-                      <BiEditAlt className="FormList-edit-icons" />
-                    </div>
-                    <IoMdTrash
-                      onClick={() => handleDelete(category)}
-                      className="FormList-delete-icon"
-                    />
-                  </td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-          <div className="FormList-pagination-header">
-            <button
-              onClick={() => handlePageChange(categoryStore.currentPage - 1)}
-              disabled={categoryStore.currentPage === 1}
-              className="FormList-pagination-button"
-            >
-              Prev
-            </button>
-            <div className="page-count">{categoryStore.currentPage}</div>
-            <button
-              className="FormList-pagination-button"
-              onClick={() => handlePageChange(categoryStore.currentPage + 1)}
-              disabled={categoryStore.currentPage === categoryStore.totalPages}
-            >
-              Next
-            </button>
+        <div className="Form-list-container">
+          <div className="formlist--search-end-row">
+            <h2>Showing Categories</h2>
+            <CategorySearchInput /> 
           </div>
+
+          {categoryStore.isLoading ? (
+            <LoadingSpinner />
+          ) : !categoryStore.category?.length ? (
+            <div className="noData-container">
+              <img src={NoData} alt="No Data to Show" className="noData-img" />
+            </div>
+          ) : (
+            <div className="FormList-table">
+              <table>
+                <thead>
+                  <tr>
+                    <th>Category Id</th>
+                    <th>Category Name</th>
+                    <th>Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {categoryStore.category?.map((category) => (
+                    <tr key={category.id}>
+                      <td>{category.id}</td>
+                      <td>{category.name}</td>
+                      <td className="FormList-edit-icon">
+                        <div
+                          onClick={() => handleEdit(category)}
+                          className="FormList-edit-icons"
+                        >
+                          <BiEditAlt className="FormList-edit-icons" />
+                        </div>
+                        <IoMdTrash
+                          onClick={() => handleDelete(category)}
+                          className="FormList-delete-icon"
+                        />
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+              <div className="FormList-pagination-header">
+                <button
+                  onClick={() =>
+                    handlePageChange(categoryStore.currentPage - 1)
+                  }
+                  disabled={categoryStore.currentPage === 1}
+                  className="FormList-pagination-button"
+                >
+                  Prev
+                </button>
+                <div className="page-count">{categoryStore.currentPage}</div>
+                <button
+                  className="FormList-pagination-button"
+                  onClick={() =>
+                    handlePageChange(categoryStore.currentPage + 1)
+                  }
+                  disabled={
+                    categoryStore.currentPage === categoryStore.totalPages
+                  }
+                >
+                  Next
+                </button>
+              </div>
+            </div>
+          )}
         </div>
       )}
-    </div>
+    </>
   );
 };
 

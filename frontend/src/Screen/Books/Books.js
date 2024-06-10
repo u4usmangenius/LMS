@@ -3,6 +3,7 @@ import { modelStore } from "../../store/ModelStore/ModelStore";
 import Modal from "../model/Modal";
 import AddBooks from "./AddBooks";
 import { observer } from "mobx-react-lite";
+import BooksList from "./BooksList";
 
 const Books = () => {
   return (
@@ -34,6 +35,7 @@ const Books = () => {
               </Modal>
             </>
           ) : null}
+          <BooksList/>
         </div>
       </div>{" "}
     </>

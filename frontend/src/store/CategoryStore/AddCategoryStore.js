@@ -24,6 +24,7 @@ class AddcategoryStore {
   };
   clearFormFields() {
     this.formData.category_Name = "";
+    this.formData.id = "";
     validations.errors.category_Name = false;
   }
   constructor() {

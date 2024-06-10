@@ -17,17 +17,17 @@ class AddbookStore {
   editORsubmit = false;
   RestrictAddAnother = false;
   formData = {
-    aac_no: "",
+    acc_no: "",
     title: "",
     author: "",
     publisher: "",
-    category: "",
-    remarks: "",
+    category: "Select Category",
+    remarks: "Give Remarks",
     cost: null,
     quantity: null,
   };
   clearFormFields() {
-    this.formData.aac_no = "";
+    this.formData.acc_no = "";
     this.formData.title = "";
     this.formData.author = "";
     this.formData.publisher = "";
@@ -35,7 +35,7 @@ class AddbookStore {
     this.formData.remarks = "";
     this.formData.cost = null;
     this.formData.quantity = null;
-    validations.errors.aac_no = false;
+    validations.errors.acc_no = false;
     validations.errors.title = false;
     validations.errors.author = false;
     validations.errors.publisher = false;
@@ -66,10 +66,11 @@ class AddbookStore {
 
   setFormData(data) {
     this.formData = { ...this.formData, ...data };
+    console.log(data);
   }
   setbooksData(book) {
     const data = { ...book };
-    this.formData.aac_no = data.aac_no;
+    this.formData.acc_no = data.acc_no;
     this.formData.title = data.title;
     this.formData.author = data.author;
     this.formData.publisher = data.publisher;
@@ -77,9 +78,10 @@ class AddbookStore {
     this.formData.remarks = data.remarks;
     this.formData.cost = data.cost;
     this.formData.quantity = data.quantity;
-    this.bookId = book.bookId;
+    this.bookId = book.id;
 
-    validations.errors.aac_no = false;
+    console.log("hello for now", this.formData, this.bookId);
+    validations.errors.acc_no = false;
     validations.errors.title = false;
     validations.errors.author = false;
     validations.errors.publisher = false;
@@ -118,9 +120,22 @@ class AddbookStore {
       const headers = {
         Authorization: `${token}`,
       };
+      console.log("first uuuuuuuuuuuuuuu", book.acc_no);
       const response = await axios.post(
         "http://localhost:8080/api/books",
-        book,
+        {
+          acc_no: book.acc_no,
+          title: book.title,
+          author: book.author,
+          publisher: book.publisher,
+          category: book.category,
+          remarks: book.remarks,
+          cost: book.cost,
+          quantity: book.quantity,
+          year: book.year,
+          pages: book.pages,
+          binding: book.binding,
+        },
         { headers }
       );
 
@@ -138,7 +153,7 @@ class AddbookStore {
   handleSubmit = async () => {
     try {
       const book = {
-        aac_no: this.formData.aac_no,
+        acc_no: this.formData.acc_no,
         title: this.formData.title,
         author: this.formData.author,
         publisher: this.formData.publisher,
@@ -146,7 +161,11 @@ class AddbookStore {
         remarks: this.formData.remarks,
         cost: this.formData.cost,
         quantity: this.formData.quantity,
+        year: 2010,
+        pages: 250,
+        binding: "",
       };
+      console.log(book, "oooooooooooooooooooooo");
       const success = await this.addbookToBackend(book);
       if (success) {
         const fetchData = async () => {

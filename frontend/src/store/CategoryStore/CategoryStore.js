@@ -134,10 +134,10 @@ class Categorytore {
         "http://localhost:8080/api/categories/paginate",
         {
           page: this.currentPage,
-          page_size: this.rowsPerPage,
+          pageSize: this.rowsPerPage,
           filter: this.selectedFilter,
           searchText: this.searchText,
-          sortColumn: "name",
+          sortBy: "id",
           sortOrder: "asc",
         },
         { headers }
@@ -172,6 +172,7 @@ class Categorytore {
       name: addCategoryStore.formData.category_Name,
       id: addCategoryStore.formData.id,
     };
+    
     const token = localStorage.getItem("bearer token");
     const headers = {
       Authorization: `${token}`,

@@ -62,6 +62,32 @@ async function insertUser() {
 // Call the function to insert the user
 insertUser();
 
+//create Student tabel 
+db.run(
+  `
+ CREATE TABLE IF NOT EXISTS student (
+  id INTEGER PRIMARY KEY AUTOINCREMENT,
+  roll_no INTEGER NOT NULL,
+  name VARCHAR(255) NOT NULL,
+  address VARCHAR(255) NOT NULL,
+  phone_no VARCHAR(255) NOT NULL,
+  batch_year INTEGER NOT NULL,
+  batch_time VARCHAR(255) NOT NULL,
+  gender VARCHAR(255) NOT NULL,
+  department_name VARCHAR(255) NOT NULL,
+  image BYTEA, 
+  created_at TIMESTAMPTZ,
+  updated_at TIMESTAMPTZ
+);
+
+  `,
+  (err)=>{
+    if(err){
+      console.error("Error creating Book table:", err);
+    }
+  }
+)
+
 //Create Categorys table
 db.run(
   `
@@ -78,7 +104,7 @@ db.run(
     }
   }
 )
-// Create Books table
+// Create Books table\
 db.run(
   `
   CREATE TABLE IF NOT EXISTS books (
