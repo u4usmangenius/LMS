@@ -1,11 +1,11 @@
 import React, { useEffect, useRef } from "react";
 import { BiSearchAlt2, BiLeftArrowAlt } from "react-icons/bi";
 import { observer } from "mobx-react-lite";
-import { bookStore } from "../../store/BooksStore/BookStore";
+import { departmentStore } from "../../store/DepartmentStore/DepartmentStore";
 const SearchInput = () => {
   const inputRef = useRef(null);
   const handleSearchTextChange = (text) => {
-    bookStore.setSearchText(text);
+    departmentStore.setSearchText(text);
   };
   return (
     <>
@@ -13,28 +13,20 @@ const SearchInput = () => {
         <div className={`Search-Container Show-Search-Container`}>
           <select
             className="Form-search-category"
-            value={bookStore.selectedFilter}
-            onChange={(e) => bookStore.setSelectedFilter(e.target.value)}
+            value={departmentStore.selectedFilter}
+            onChange={(e) => departmentStore.setSelectedFilter(e.target.value)}
           >
-            <option value="all">All</option>
-            <option value="category">category</option>
-            <option value="remarks">remarks</option>
-            <option value="acc_no">acc_no</option>
-            <option value="title">title</option>
-            <option value="author">author</option>
-            <option value="publisher">publisher</option>
-            <option value="cost">cost</option>
-            <option value="quantity">quantity</option>
+            <option value="department_name">dept</option>
           </select>
 
           <input
             type="text"
             className="FormList-text-input"
-            placeholder="Search for a book"
-            value={bookStore.searchText}
+            placeholder="Search department"
+            value={departmentStore.searchText}
             onChange={(e) => {
-              bookStore.setSearchText(e.target.value);
-              bookStore.fetchDataFromBackend(1);
+              departmentStore.setSearchText(e.target.value);
+              departmentStore.fetchDataFromBackend(1);
             }}
             ref={inputRef}
           />
@@ -43,7 +35,7 @@ const SearchInput = () => {
             onClick={() => {
               handleSearchTextChange("");
               inputRef.current.focus();
-              bookStore.fetchDataFromBackend();
+              departmentStore.fetchDataFromBackend();
             }}
             ref={inputRef}
           >
@@ -54,14 +46,14 @@ const SearchInput = () => {
               type="text"
               className="Form-search-category"
               placeholder="Enter Rows Per Page"
-              value={bookStore.rowsPerPage}
+              value={departmentStore.rowsPerPage}
               onChange={(e) => {
                 let value = e.target.value;
                 if (
                   value === "" ||
                   (parseInt(value) >= 1 && parseInt(value) <= 100)
                 ) {
-                  bookStore.setrowsPerPage(value);
+                  departmentStore.setrowsPerPage(value);
                 }
               }}
             >

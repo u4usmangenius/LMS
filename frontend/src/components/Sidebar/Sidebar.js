@@ -3,7 +3,7 @@ import "./Sidebar.css";
 import React from "react";
 import { FaCheckCircle, FaInfo } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { MdAccountBalance, MdAssignmentTurnedIn, MdCategory, MdLogout } from "react-icons/md";
+import { MdAccountBalance, MdAssignmentTurnedIn, MdCategory, MdLocalFireDepartment, MdLogout } from "react-icons/md";
 import { IoLogOut, IoSettingsSharp } from "react-icons/io5";
 import {
   FaChalkboardTeacher,
@@ -12,7 +12,7 @@ import {
   FaChartBar,
   FaStar,
 } from "react-icons/fa";
-import { IoIosBook } from "react-icons/io";
+import { IoIosBook, IoMdSchool } from "react-icons/io";
 import { AiFillHome } from "react-icons/ai";
 import { observer } from "mobx-react-lite";
 import { sidebarStore } from "../../store/SidebarStore/SidebarStore";
@@ -56,6 +56,11 @@ const Sidebar = () => {
           <li>
             <NavLink to="/sidebar/category">
               <MdCategory /> Category
+            </NavLink>
+          </li>
+          <li>
+            <NavLink to="/sidebar/departments">
+              <IoMdSchool /> Departments
             </NavLink>
           </li>
           <li>
