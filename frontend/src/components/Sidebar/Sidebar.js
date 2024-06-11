@@ -1,9 +1,15 @@
 import logo from "../../assests/logo.png"; // Replace with your logo image URL
 import "./Sidebar.css";
 import React from "react";
-import { FaCheckCircle, FaInfo } from "react-icons/fa";
+import { FaBook, FaCheckCircle, FaHistory, FaInfo } from "react-icons/fa";
 import { Link, NavLink, Outlet, useNavigate } from "react-router-dom";
-import { MdAccountBalance, MdAssignmentTurnedIn, MdCategory, MdLocalFireDepartment, MdLogout } from "react-icons/md";
+import {
+  MdAccountBalance,
+  MdAssignmentTurnedIn,
+  MdCategory,
+  MdLocalFireDepartment,
+  MdLogout,
+} from "react-icons/md";
 import { IoLogOut, IoSettingsSharp } from "react-icons/io5";
 import {
   FaChalkboardTeacher,
@@ -16,7 +22,7 @@ import { IoIosBook, IoMdSchool } from "react-icons/io";
 import { AiFillHome } from "react-icons/ai";
 import { observer } from "mobx-react-lite";
 import { sidebarStore } from "../../store/SidebarStore/SidebarStore";
-import { GiExpense } from "react-icons/gi";
+import { GiDrawbridge, GiExpense } from "react-icons/gi";
 import { PiStudentBold } from "react-icons/pi";
 
 const Sidebar = () => {
@@ -49,6 +55,12 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
+            <NavLink to="/sidebar/departments">
+              <IoMdSchool /> Departments
+            </NavLink>
+          </li>
+
+          <li>
             <NavLink to="/sidebar/books">
               <IoIosBook /> Books
             </NavLink>
@@ -59,13 +71,18 @@ const Sidebar = () => {
             </NavLink>
           </li>
           <li>
-            <NavLink to="/sidebar/departments">
-              <IoMdSchool /> Departments
+            <NavLink to="/sidebar/transections">
+              <FaBook /> Transections
             </NavLink>
           </li>
-          <li>
+          {/* <li>
             <NavLink to="/sidebar/about">
               <FaInfo /> About
+            </NavLink>
+          </li> */}
+          <li>
+            <NavLink to="/sidebar/history">
+              <FaHistory /> History
             </NavLink>
           </li>
           <li>

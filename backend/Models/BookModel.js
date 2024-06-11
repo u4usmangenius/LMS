@@ -3,6 +3,33 @@ const router = express.Router();
 const db = require("../db/Sqlite").db;
 const { verifyToken } = require("./authMiddleware");
 
+// router to get all books related to a specific category, don't remove it, it is important
+router.post("/api/books/categories/filter", verifyToken, (req, res) => {
+  const { category } = req.body;
+
+  if (!category) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Category is required" });
+  }
+
+  const query = `
+    SELECT id, acc_no, title, publisher, year, pages, binding, remarks, cost, quantity, author, category
+    FROM books
+    WHERE category = ?
+  `;
+
+  db.all(query, [category], (err, rows) => {
+    if (err) {
+      console.error("Error fetching books:", err);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    } else {
+      res.status(200).json({ success: true, books: rows });
+    }
+  });
+});
 // Route to list all books
 router.get("/api/books", verifyToken, (req, res) => {
   const query = `
@@ -36,7 +63,7 @@ router.get("/api/books", verifyToken, (req, res) => {
   });
 });
 
-// Route to apply fillter of category with pagination 
+// Route to apply fillter of category with pagination
 router.post("/api/books/paginate/category", verifyToken, (req, res) => {
   const { category } = req.body;
   const page = parseInt(req.body.page) || 1;
@@ -63,12 +90,16 @@ router.post("/api/books/paginate/category", verifyToken, (req, res) => {
   db.all(query, params, (err, rows) => {
     if (err) {
       console.error("Error paginating books:", err);
-      res.status(500).json({ success: false, message: "Internal server error" });
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
     } else {
       db.get("SELECT COUNT(*) as count FROM books", (err, row) => {
         if (err) {
           console.error("Error getting book count:", err);
-          res.status(500).json({ success: false, message: "Internal server error" });
+          res
+            .status(500)
+            .json({ success: false, message: "Internal server error" });
         } else {
           const totalCount = row.count;
           const totalPages = Math.ceil(totalCount / page_size);
@@ -78,7 +109,6 @@ router.post("/api/books/paginate/category", verifyToken, (req, res) => {
     }
   });
 });
-
 
 // {
 //   "page": 1,
@@ -125,7 +155,6 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
     filter === "remarks" ||
     filter === "cost" ||
     filter === "quantity"
-
   ) {
     query += ` AND ${filter} LIKE ?`;
     params.push(`%${search}%1`);

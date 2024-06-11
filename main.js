@@ -29,20 +29,21 @@ const port = 8080;
 
 // import other modules here
 const BookModel = require("./backend/Models/BookModel.js");
-const LoginModel= require("./backend/Models/LoginModel.js");
-const CategoryModel=require('./backend/Models/CategoryModel.js');
-const DepartmentModel=require('./backend/Models/DepartmentModel.js')
-const StudentModel = require('./backend/Models/StudentModel.js')
-const TransectionModel=require('./backend/Models/TransectionModel.js')
-require('./backend/Models/TaskScheduler.js')
+const LoginModel = require("./backend/Models/LoginModel.js");
+const CategoryModel = require("./backend/Models/CategoryModel.js");
+const DepartmentModel = require("./backend/Models/DepartmentModel.js");
+const StudentModel = require("./backend/Models/StudentModel.js");
+const TransectionModel = require("./backend/Models/TransectionModel.js");
+const HistoryModel = require("./backend/Models/HistoryModel.js");
+require("./backend/Models/TaskScheduler.js");
 
 expressApp.use("/", LoginModel);
 expressApp.use("/", BookModel);
-expressApp.use("/",CategoryModel);
-expressApp.use("/",DepartmentModel);
-expressApp.use("/",StudentModel)
-expressApp.use("/",TransectionModel)
-
+expressApp.use("/", CategoryModel);
+expressApp.use("/", DepartmentModel);
+expressApp.use("/", StudentModel);
+expressApp.use("/", TransectionModel);
+expressApp.use("/", HistoryModel);
 
 let mainWindow;
 

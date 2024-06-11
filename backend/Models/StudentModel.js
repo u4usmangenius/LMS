@@ -3,6 +3,28 @@ const router = express.Router();
 const db = require("../db/Sqlite").db;
 const { verifyToken } = require("./authMiddleware");
 
+// Route to get all students related to specific department,batch and session (Morning/Evening)
+router.post("/api/students/filter", (req, res) => {
+  const { department_name, batch_year, batch_time } = req.body;
+  const query = `
+    SELECT id, roll_no, name, address, phone_no, batch_year, batch_time, gender, department_name, image
+    FROM students
+    WHERE department_name = ? AND batch_year = ? AND batch_time = ?
+  `;
+
+  // Execute the query with provided parameters
+  db.all(query, [department_name, batch_year, batch_time], (err, rows) => {
+    if (err) {
+      console.error("Error fetching students:", err);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    } else {
+      res.status(200).json({ success: true, students: rows });
+    }
+  });
+});
+
 // Route to list all students
 router.get("/api/students", (req, res) => {
   const query = `
