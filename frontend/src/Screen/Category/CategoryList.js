@@ -111,7 +111,10 @@ const CategoryList = () => {
         <button
           className="FormList-pagination-button"
           onClick={() => handlePageChange(categoryStore.currentPage + 1)}
-          disabled={categoryStore.currentPage === categoryStore.totalPages}
+          disabled={
+            categoryStore.currentPage === categoryStore.totalPages ||
+            categoryStore.category?.length === 0
+          }
         >
           Next
         </button>

@@ -5,6 +5,7 @@ import { addbookStore } from "../../store/BooksStore/AddBookStore.js";
 import { modelStore } from "../../store/ModelStore/ModelStore.js";
 import { addCategoryStore } from "../../store/CategoryStore/AddCategoryStore.js";
 import { addDepartmentStore } from "../../store/DepartmentStore/AddDepartmentStore.js";
+import { addstudentStore } from "../../store/StudentsStore/AddStudentStore.js";
 
 const Modal = ({ isOpen, onClose, children }) => {
   useEffect(() => {
@@ -32,6 +33,7 @@ const Modal = ({ isOpen, onClose, children }) => {
     addCategoryStore.clearFormFields();
     addbookStore.clearFormFields();
     addDepartmentStore.clearFormFields();
+    addstudentStore.clearFormFields();
     // add others for clearn for their form fields(clearformfields)
 
     onClose();

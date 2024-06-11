@@ -58,7 +58,7 @@ const DepartmentList = () => {
 
           {departmentStore.isLoading ? (
             <LoadingSpinner />
-          ) : !departmentStore.department?.length ? (
+          ) : !departmentStore.departments?.length ? (
             <div className="noData-container">
               <img src={NoData} alt="No Data to Show" className="noData-img" />
             </div>
@@ -73,7 +73,7 @@ const DepartmentList = () => {
                   </tr>
                 </thead>
                 <tbody>
-                  {departmentStore.department?.map((department) => (
+                  {departmentStore.departments?.map((department) => (
                     <tr key={department.id}>
                       <td>{department.id}</td>
                       <td>{department.name}</td>
@@ -109,7 +109,10 @@ const DepartmentList = () => {
         <button
           className="FormList-pagination-button"
           onClick={() => handlePageChange(departmentStore.currentPage + 1)}
-          disabled={departmentStore.currentPage === departmentStore.totalPages}
+          disabled={
+            departmentStore.currentPage === departmentStore.totalPages ||
+            departmentStore.departments?.length === 0
+          }
         >
           Next
         </button>
