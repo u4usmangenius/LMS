@@ -109,7 +109,6 @@ class DepartmentStore {
       const headers = {
         Authorization: `${token}`,
       };
-      console.log("seeeeeeeeeeeeeeeeeeerch txt",this.searchText)
       const response = await axios.post(
         "http://localhost:8080/api/departments/paginate",
         {
@@ -117,10 +116,10 @@ class DepartmentStore {
           pageSize: this.rowsPerPage,
           filter: this.selectedFilter,
           category: this.FiltreCategoryName,
-          searchText: this.searchText,
+          search: this.searchText,
           // sortBy: "acc_no",
-          sortBy: "id",
-          sortOrder: "asc",
+          sortBy: "",
+          sortOrder: "desc",
         },
         { headers }
       );
@@ -128,7 +127,6 @@ class DepartmentStore {
       if (this.currentPage === 1) {
         this.departments = response.data.departments;
         console.log("usman this.departments", this.departments);
-        console.log(this.departments[0])
       } else {
         this.departments = [];
         this.departments = [...this.departments, ...response.data.departments];

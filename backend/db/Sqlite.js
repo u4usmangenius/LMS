@@ -5,7 +5,6 @@ const bcrypt = require("bcrypt");
 
 
 
-
 // crating login user
 // Creating login user table
 async function createUserTable() {
@@ -61,6 +60,36 @@ async function insertUser() {
 
 // Call the function to insert the user
 insertUser();
+
+
+//create a transection table
+db.run(
+  `
+  CREATE TABLE IF NOT EXISTS transections (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+    roll_no INTEGER NOT NULL,
+    name VARCHAR(255) NOT NULL,
+    batch_year INTEGER NOT NULL,
+    batch_time VARCHAR(255) NOT NULL,
+    department_name VARCHAR(255) NOT NULL,
+    category VARCHAR(255) NOT NULL,
+    phone_no VARCHAR(255) NOT NULL,
+    title VARCHAR(255) NOT NULL,
+    due_date DATETIME NOT NULL,
+    fine FLOAT DEFAULT 0,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    updated_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
+  )
+  `,
+  (err) => {
+    if (err) {
+      console.error("Error creating transection table:", err);
+    } else {
+      console.log("Successfully created transections table");
+    }
+  }
+);
+
 //department tabel 
 db.run(
   `
@@ -71,8 +100,8 @@ db.run(
     updated_at TIMESTAMPTZ
    )
   `,
-  (err)=>{
-    if(err){
+  (err) => {
+    if (err) {
       console.error("Error creating Book table:", err);
     }
   }
@@ -93,11 +122,11 @@ db.run(
   image BYTEA, 
   created_at TIMESTAMPTZ,
   updated_at TIMESTAMPTZ
-);
+)
 
   `,
-  (err)=>{
-    if(err){
+  (err) => {
+    if (err) {
       console.error("Error creating Book table:", err);
     }
   }
@@ -113,8 +142,8 @@ db.run(
     updated_at TIMESTAMPTZ
    )
   `,
-  (err)=>{
-    if(err){
+  (err) => {
+    if (err) {
       console.error("Error creating Book table:", err);
     }
   }

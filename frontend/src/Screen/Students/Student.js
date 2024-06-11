@@ -1,45 +1,24 @@
 import React from "react";
-import { modelStore } from "../../store/ModelStore/ModelStore";
-import Modal from "../model/Modal";
-import Addstudents from "./AddStudents";
-import { observer } from "mobx-react-lite";
-import StudentList from "./StudentList";
-
-const students = () => {
+import "../styles/FormList.css"
+import Header from "../header/Header";
+const Student = () => {
   return (
     <>
       {/* <Header/> */}
       <div className="formlist-list-container">
         <div className="formlist-header-row">
-          <h1>students</h1>
+          <h1>Student</h1>
           {/* <TestSearchInput/> */}
           <button
             className="formlist-click-add-button"
-            onClick={async () => {
-              console.log("clicked");
-              modelStore.setisModalOpen(true);
-              // await feeAccount.getCurrentMonthDates();
-            }}
+            // onClick={openAddTestsModal}
           >
-            Add students
+            Add Students
           </button>
         </div>
-        <div>
-          {modelStore.isModalOpen ? (
-            <>
-              <Modal
-                isOpen={modelStore.isModalOpen}
-                onClose={modelStore.closeModel}
-              >
-                <Addstudents />
-              </Modal>
-            </>
-          ) : null}
-          <StudentList/>
-        </div>
-      </div>{" "}
+      </div>
     </>
   );
 };
 
-export default observer(students);
+export default Student;
