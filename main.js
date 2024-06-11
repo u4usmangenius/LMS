@@ -33,14 +33,16 @@ const LoginModel= require("./backend/Models/LoginModel.js");
 const CategoryModel=require('./backend/Models/CategoryModel.js');
 const DepartmentModel=require('./backend/Models/DepartmentModel.js')
 const StudentModel = require('./backend/Models/StudentModel.js')
-const transectionModel=require('./backend/Models/TransectionModel.js')
+const TransectionModel=require('./backend/Models/TransectionModel.js')
+require('./backend/Models/TaskScheduler.js')
 
 expressApp.use("/", LoginModel);
 expressApp.use("/", BookModel);
 expressApp.use("/",CategoryModel);
 expressApp.use("/",DepartmentModel);
 expressApp.use("/",StudentModel)
-expressApp.use("/",transectionModel)
+expressApp.use("/",TransectionModel)
+
 
 let mainWindow;
 
