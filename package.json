@@ -1,5 +1,5 @@
 {
-  "name": "Library House",
+  "name": "library_house",
   "version": "1.0.0",
   "description": "A Library Management System application powered by SCS.",
   "main": "main.js",
