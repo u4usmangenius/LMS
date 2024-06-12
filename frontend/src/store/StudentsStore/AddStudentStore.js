@@ -77,7 +77,7 @@ class AddstudentStore {
   }
   setApiFields(data) {
     this.ApiFields = { ...this.ApiFields, ...data };
-    console.log("ApiFields",data);
+    console.log("ApiFields", data);
   }
   setstudentsData(student) {
     const data = { ...student };

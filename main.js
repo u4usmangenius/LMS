@@ -35,6 +35,7 @@ const DepartmentModel = require("./backend/Models/DepartmentModel.js");
 const StudentModel = require("./backend/Models/StudentModel.js");
 const TransectionModel = require("./backend/Models/TransectionModel.js");
 const HistoryModel = require("./backend/Models/HistoryModel.js");
+const DashboardModel = require("./backend/Models/DashboardModel.js");
 require("./backend/Models/TaskScheduler.js");
 
 expressApp.use("/", LoginModel);
@@ -44,15 +45,16 @@ expressApp.use("/", DepartmentModel);
 expressApp.use("/", StudentModel);
 expressApp.use("/", TransectionModel);
 expressApp.use("/", HistoryModel);
+expressApp.use("/", DashboardModel);
 
 let mainWindow;
 
 function createWindow() {
   mainWindow = new BrowserWindow({
-    width: 1060,
+    width: 1200,
     minHeight: 671,
     height: 671,
-    minWidth: 1060,
+    minWidth: 1200,
     title: "Library Management System",
     icon: path.join(__dirname, "icon.ico"),
     webPreferences: {

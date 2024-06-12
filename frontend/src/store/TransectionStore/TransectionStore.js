@@ -112,11 +112,13 @@ class TransectionStore {
   async fetchStudents() {
     try {
       this.setLoading(true);
-      addtransectionStore.setFormData({
-        // roll_no: "",
-        // name: "",
-        // phone_no: "",
-      });
+      if (!addtransectionStore.editORsubmit) {
+        addtransectionStore.setFormData({
+          roll_no: "",
+          name: "",
+          phone_no: "",
+        });
+      }
 
       const token = localStorage.getItem("bearer token");
       const headers = {
@@ -295,7 +297,7 @@ class TransectionStore {
         "http://localhost:8080/api/transections/paginate",
         {
           page: this.currentPage,
-          pageSize: this.rowsPerPage,
+          page_size: this.rowsPerPage,
           filter: this.selectedFilter,
           category: this.FiltreCategoryName ? this.FiltreCategoryName : "",
           search: this.searchText,

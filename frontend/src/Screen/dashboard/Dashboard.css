@@ -1,18 +1,44 @@
 body {
 }
+.Form-list-dashboard-container {
+  margin-right: 8px !important;
+  background-color: #fff;
+  box-shadow: 0 0.5px 4px rgb(75, 73, 73, 0.5);
+  height: auto;
+  width: 99%;
+  margin-top: 5% !important;
+  margin-left: 0% !important;
+  padding-bottom: 1% !important;
+}
+.Form-list-dashboard-container h2 {
+  margin-top: 3%;
+  margin-bottom: 0.7%;
+}
+.Form-list-dashboard-container table {
+  margin-left: -5% !important;
+  width: 104.66% !important;
+  margin-top: -3% !important;
+  padding-top: -3% !important;
+}
+.Form-list-dashboard-container table th {
+  /* color: #001a83; */
+  color: #f97c4d;
+}
+.FormList-container-dashboard {
+  padding-bottom: 1% !important;
+}
 .dashboard-container {
   /* background-color: rgb(2, 10, 24)   !important; */
   /* background-color: #17222e  !important; */
 
   /* background-color: #081228 !important; */
-  background-color: #ecf0f1 !important;
-  
+  background-color: #fff !important;
 
   /* background-color: #e6e8ed !important; */
   /* width: 100vw; */
-  height: 170vh;
+  height: 102vh;
   margin-left: -4%;
-  margin-top: -10.9%; 
+  margin-top: -10.9%;
   /*  
   padding-left: -25%; */
   /* position: relative;
@@ -44,16 +70,18 @@ body {
 .dashboard-search-bar {
   display: flex;
   align-items: center;
-  /* border: 1px solid #dde; */
+  /* border: 1px solid ##fff; */
   border: none;
   padding: 5px;
   width: 200px;
   height: 23px;
-  background-color: #f97c4d;
-  border-radius: 8px;
-  color: #dde !important;
+  background-color: #3d4977;
+  border-radius: 5px;
+  color: #fff;
 }
-
+.dashboard-search-bar input[type="text"]::placeholder {
+  color: #fff;
+}
 .dashboard-search-icon {
   padding: 5px;
   display: flex;
@@ -66,14 +94,14 @@ body {
   background: transparent;
   border: none;
   cursor: pointer;
-  color: #dde;
+  color: #fff;
 }
 .dashboard-search-bar input {
   flex: 1; /* Allows the input to take up the available space */
   border: none;
   outline: none;
   background: transparent;
-  color: #dde;
+  color: #fff;
 }
 
 /* Top Right */
@@ -83,8 +111,7 @@ body {
 }
 .dashboard-notification-icon-orange {
   /* margin-right: 314px; */
-  color:#dde;
-
+  color: #fff;
 }
 /* Profile Container (Includes Profile and Notification Icons) */
 
@@ -116,7 +143,7 @@ body {
   position: relative; /* Add position: relative */
 /* width: 160px; /* Fixed width for the profile icon container */
 /*
-  background-color: #dde;
+  background-color: ##fff;
   color: #000;
   width: 170px;
   padding-left: 10px;
@@ -133,27 +160,47 @@ body {
   justify-content: space-between;
   cursor: pointer;
   position: relative;
-  width: 230px;
-  background-color: #ed8b1a;
-  color: #dde;
-  padding-left: 10px;
-  height: 37px;
-  border-radius: 8px;
+  width: 150px;
+  background-color: #3d4977;
+  color: #fff;
+  /* padding-left: 10px; */
+  /* height: 34px; */
+  border-top-left-radius: 10px;
+  border-bottom-left-radius: 10px;
+  border-top-right-radius: 1px;
+  border-bottom-right-radius: 1px;
+  /* border-radius: 50%; */
+  height:34px;
 }
 
 /* Logo Image */
 .profile-icon img {
-  max-width: 57px; /* Adjust the maximum width of your logo */
-  margin-right: 5px; /* Add some space between the logo and text */
-  /* margin-left: -15px; */
+  width: 23%; /* Make the image fill the container */
+  height: 100%; /* Make the image fill the container */
+  object-fit: cover; /* Ensures the image covers the entire area */
+  box-shadow: 0 0.5px 4px rgba(134, 167, 189, 0.5);
+  margin-left: -10px;
+  margin-bottom: 0.371px;
+  /* margin-top: 0.375px; */
+  margin-right: 10px;
 }
-
+.dashboard-logo {
+  border-radius: 30px;
+  border-top-right-radius: 250px;
+  border-top-left-radius: 250px;
+  border-bottom-right-radius: 250px;
+  border-bottom-left-radius: 250px;
+}
 /* Usman Chaudhary Text */
 .dashboard-profile-name {
   flex: 1; /* Allow the text to take up the available space */
   display: flex; /* Add display flex to align text and icon horizontally */
   align-items: center; /* Vertically center-align text and icon */
   justify-content: center;
+  text-align: left;
+  /* margin-left: -15px; */
+  font-weight: bold;
+  margin-left: 15px;
 }
 
 /* Dropdown Icon */
@@ -171,14 +218,14 @@ body {
 
 .dashboard-notification-icon-orange {
   margin-right: 10px;
-  box-shadow: 0 0.5px 4px rgb(75, 73, 73); /* Box shadow for the dropdown */
+  box-shadow: 0 0.5px 4px rgb(75, 73, 73, 0.5);
   width: 36px;
   display: flex;
   align-items: center;
   justify-content: center;
   height: 35px;
   border-radius: 50px;
-  background-color: #f97c4d;
+  background-color: #3d4977;
 }
 /* Profile Dropdown */
 .profile-dropdown {
@@ -186,29 +233,20 @@ body {
   position: absolute;
   top: 100%;
   right: 0;
-  background-color: #f97c4d !important;
-  border: 1px solid #dde;
-  padding: 10px;
-  width: 150px; /* Adjust the width as needed */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a shadow for the dropdown */
-}
-/* Profile Dropdown */
-.profile-dropdown {
-  display: none;
-  position: absolute;
-  top: 100%;
-  right: 0;
-  background-color:  #f97c4d !important; /* Background color for the dropdown */
-  /* border: 1px solid #dde; */
+  background-color: #182557 ;
   border: none;
-  padding: 10px;
-  width: 217px;
+  padding: 2px;
   margin-top: 3px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Box shadow for the dropdown */
-  /* margin-top: -1px; */
-  z-index: 1; /* Ensure it's on top of other elements */
-  color: #dde; /* Text color for dropdown items */
-  opacity: 0.9; /* Transparency (adjust as needed) */
+  width: 161px;
+  height: 23px;
+  padding-top: 8px;
+  padding-bottom: 4px;
+  border-radius: 5px;
+  z-index: 1;
+  color: #fff;
+  font-weight: bold;
+  opacity: 0.9;
 }
 
 .profile-dropdown ul {
@@ -219,8 +257,7 @@ body {
 .profile-dropdown li {
   display: flex;
   align-items: center;
-  margin-bottom: 8px;
-  height: 21px;
+  height: auto;
   border-radius: 8px;
   padding-left: 3px;
 }
@@ -230,8 +267,10 @@ body {
 }
 
 .profile-dropdown li:hover {
-  background-color: #de5624; /* Background color on hover */
-  color: #000;
+  /* background-color: #3d4977; Background color on hover */
+  /* color: #000; */
+  letter-spacing: 1.5px;
+  transition: 0.3s ease-in-out;
 }
 
 /* ... (Previous styles) */
@@ -250,7 +289,7 @@ body {
   justify-content: center;
   /* margin-right: 30px; */
   margin: auto;
-  margin-top: 45px;
+  margin-top: 5px;
   gap: 20px; /* Add gap between cards */
 }
 
@@ -258,7 +297,7 @@ body {
 .dashboard-card {
   flex: 1;
   padding: 25px;
-  background-color: #f97c4d;
+  background-color: #3d4977;
   color: white;
   text-align: center;
   position: relative; /* Add relative positioning to the card */
@@ -267,13 +306,16 @@ body {
   justify-content: center;
   height: 121px;
   flex-direction: column;
+  border-radius: 5px;
+  box-shadow: 0 0.5px 4px rgb(75, 73, 73, 0.5);
 }
 
 .dashboard-card-heading {
   font-size: 23px;
   font-weight: 800;
   margin-bottom: 10px;
-  color: #dde;
+  margin-left: -6%;
+  color: #fff;
 }
 
 .dashboard-card-text {
@@ -282,7 +324,7 @@ body {
   margin-left: -22%;
   font-size: 23px;
   font-weight: 800;
-  color: #dde;
+  color: #fff;
 }
 
 /* Info Row Styles */
@@ -295,7 +337,8 @@ body {
   left: 0;
   right: 0;
   padding: 10px 20px;
-  background-color: #de5321;
+  background-color: #b3bad6;
+  /* border-radius: 5px; */
   height: 15px;
 }
 

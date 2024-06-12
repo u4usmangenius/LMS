@@ -59,18 +59,18 @@ const StudentList = () => {
                   addstudentStore.setApiFields({
                     department_name: e.target.value,
                   });
-                //   if (
-                //     addstudentStore.ApiFields.department_name ===
-                //       "Select department" ||
-                //     addstudentStore.ApiFields.department_name?.trim() !== 0
-                //   ) {
-                //     addstudentStore.setApiFields({
-                //       batch_year: "Select Batch",
-                //       batch_time: "Select Session",
-                //     });
+                  //   if (
+                  //     addstudentStore.ApiFields.department_name ===
+                  //       "Select department" ||
+                  //     addstudentStore.ApiFields.department_name?.trim() !== 0
+                  //   ) {
+                  //     addstudentStore.setApiFields({
+                  //       batch_year: "Select Batch",
+                  //       batch_time: "Select Session",
+                  //     });
 
-                //     return;
-                //   }
+                  //     return;
+                  //   }
                 }}
               >
                 <option value="">Select department</option>
@@ -90,24 +90,24 @@ const StudentList = () => {
                     batch_year: e.target.value,
                   });
 
-                //   if (
-                //     !addstudentStore.ApiFields.department_name ||
-                //     addstudentStore.ApiFields.batch_year === "Select Batch"
-                //   ) {
-                //     addstudentStore.setApiFields({
-                //       batch_year: "Select Batch",
-                //       batch_time: "Select Session",
-                //     });
+                  //   if (
+                  //     !addstudentStore.ApiFields.department_name ||
+                  //     addstudentStore.ApiFields.batch_year === "Select Batch"
+                  //   ) {
+                  //     addstudentStore.setApiFields({
+                  //       batch_year: "Select Batch",
+                  //       batch_time: "Select Session",
+                  //     });
 
-                //     return;
-                //   } else if (
-                //     addstudentStore.ApiFields.department_name &&
-                //     addstudentStore.ApiFields.batch_year === ""
-                //   ) {
-                //     addstudentStore.setApiFields({
-                //       batch_time: "Select Session",
-                //     });
-                //   }
+                  //     return;
+                  //   } else if (
+                  //     addstudentStore.ApiFields.department_name &&
+                  //     addstudentStore.ApiFields.batch_year === ""
+                  //   ) {
+                  //     addstudentStore.setApiFields({
+                  //       batch_time: "Select Session",
+                  //     });
+                  //   }
                 }}
               >
                 <option value="">Select Batch</option>
@@ -131,13 +131,13 @@ const StudentList = () => {
                 className="Form-filter-ClassName"
                 value={addstudentStore.ApiFields.batch_time}
                 onChange={(e) => {
-                //   if (addstudentStore.ApiFields.batch_year === "Select Batch") {
-                //     addstudentStore.setApiFields({
-                //       batch_time: "Select Session",
-                //     });
+                  //   if (addstudentStore.ApiFields.batch_year === "Select Batch") {
+                  //     addstudentStore.setApiFields({
+                  //       batch_time: "Select Session",
+                  //     });
 
-                //     return;
-                //   }
+                  //     return;
+                  //   }
                   addstudentStore.setApiFields({
                     batch_time: e.target.value,
                   });
@@ -153,6 +153,7 @@ const StudentList = () => {
                 className="FormList-pagination-button"
                 style={{
                   width: "97px",
+                  marginLeft:"-7px"
                 }}
                 onClick={() => {
                   addstudentStore.setApiFields({

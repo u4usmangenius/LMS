@@ -7,10 +7,10 @@ body {
     "Lucida Sans", Arial, sans-serif;
   font-weight: 500;
   font-style: 17px;
-  background-color: #ecf0f1 !important;
+  background-color: #fff !important;
+  /* background-color: #ecf0f1 !important; */
   /* background-color: #aeb9c9 !important; */
   /* background-color: #f97c4d; */
-
 }
 .sidebar-row {
   border-bottom: 0.4px solid #706e6e;
@@ -21,7 +21,7 @@ body {
   width: 207px;
   height: 110%;
   padding-top: 7px;
-  color: #000 ;
+  color: #000;
   font-weight: 500;
   font-size: 15px;
   position: fixed;
@@ -29,14 +29,28 @@ body {
   /* box-shadow: 4px 0 12px rgba(0, 0, 0, 0.5); */
   margin-bottom: 500px;
   z-index: 997;
-  background: rgba(26, 99, 70, 0.297); /* White with 10% opacity */
+  /* background: #fff;  */
   /* border-radius: 10px; */
   padding: 20px;
-  backdrop-filter: blur(1px); /* Apply blur effect */
-  -webkit-backdrop-filter: blur(5px); /* Safari support */
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Optional: add a shadow */
-  border: 1px solid rgba(255, 255, 255, 0.3); /* Optional: add a border */
-  }
+
+  /* background: transparent; */
+  /* background-color:rgba(0, 0, 0, 0.358); */
+  /* backdrop-filter: blur(1px); */
+  /* background: rgba(0, 0, 0, 0.12); */
+  /* 
+  -webkit-backdrop-filter: blur(5px);
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.4);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  padding: 20px; */
+  /* border-radius: 10px; */
+  background: #fff;
+  backdrop-filter: blur(10px);
+  /* box-shadow: 20px 20px 40px 1px rgba(0,0,0,0.2); */
+  box-shadow: 2px 4px 6px rgba(0, 0, 0, 0.2);
+
+
+  
+}
 
 .logo-container {
   text-align: center;
@@ -77,6 +91,8 @@ body {
   transition: 0.3s ease-out;
   letter-spacing: 2px;
   width: 151px;
+  color: #eed;
+  
 }
 .nav-ul a {
   text-decoration: none;
@@ -105,7 +121,7 @@ body {
 }
 
 .new-feature {
-  background-color: #fff;
+  /* background-color: #fff; */
   padding: 1px 4px;
   margin-left: 10px;
   border-radius: 5px;
@@ -245,7 +261,7 @@ body {
 .active {
   box-shadow: 4px 0 12px rgba(16, 18, 20, 0.1);
   background-color: #f97c4d;
-  color: #cee0ff !important;
+  color: #fff !important;
   letter-spacing: 1px !important;
   border-radius: 5px;
   width: 151px;
@@ -299,7 +315,7 @@ body {
   align-items: center;
   justify-content: flex-start;
   text-decoration: none;
-  color: black;
+  color: #fff;
   background-color: transparent;
   width: 70% !important;
   gap: 5px !important;
@@ -310,12 +326,12 @@ body {
 .navlink:hover {
   /* background-color:#f97c4d !important; */
   background-color: transparent !important;
-  color: #c4dcf5 !important;
+  color: #fff !important;
   width: 70% !important;
 }
 .diable-navlink #w {
   background-color: transparent !important;
 }
 .a222 {
-  background-color: red ;
+  background-color: red;
 }

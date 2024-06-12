@@ -282,7 +282,7 @@ class BookStore {
             );
             this.setbooks(updatedbooks);
             this.fetchDataFromBackend(1);
-            addbookStore.showAlert("book Deleted Successfully..");
+            addbookStore.showAlert("Book deleted successfully..");
           } else {
             console.error("Error deleting book:", response.data.message);
             addbookStore.showAlert("Error while deleting book..");

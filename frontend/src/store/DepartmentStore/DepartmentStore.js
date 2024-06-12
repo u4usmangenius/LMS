@@ -109,7 +109,7 @@ class DepartmentStore {
       const headers = {
         Authorization: `${token}`,
       };
-      console.log("seeeeeeeeeeeeeeeeeeerch txt",this.searchText)
+      console.log("seeeeeeeeeeeeeeeeeeerch txt", this.searchText);
       const response = await axios.post(
         "http://localhost:8080/api/departments/paginate",
         {
@@ -128,7 +128,7 @@ class DepartmentStore {
       if (this.currentPage === 1) {
         this.departments = response.data.departments;
         console.log("usman this.departments", this.departments);
-        console.log(this.departments[0])
+        console.log(this.departments[0]);
       } else {
         this.departments = [];
         this.departments = [...this.departments, ...response.data.departments];
@@ -193,7 +193,7 @@ class DepartmentStore {
   async handleDelete(department) {
     console.log("first,returnrrrrrrrrrrrrr", department);
     const confirmed = await this.showConfirm(
-      `Are you sure you want to delete ${department.acc_no}?`
+      `Are you sure you want to delete id:${department.id} name:${department.name}?`
     );
     if (confirmed) {
       const token = localStorage.getItem("bearer token");
@@ -211,7 +211,7 @@ class DepartmentStore {
             );
             this.setdepartments(updateddepartments);
             this.fetchDataFromBackend(1);
-            addDepartmentStore.showAlert("department Deleted Successfully..");
+            addDepartmentStore.showAlert("department deleted Successfully..");
           } else {
             console.error("Error deleting department:", response.data.message);
             addDepartmentStore.showAlert("Error while deleting department..");

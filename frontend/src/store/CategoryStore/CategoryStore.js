@@ -234,7 +234,7 @@ class Categorytore {
             );
             this.setcategory(updatedcategory);
             this.fetchDataFromBackend(1);
-            addCategoryStore.showAlert("category Deleted Successfully..");
+            addCategoryStore.showAlert("Category deleted sSuccessfully..");
           } else {
             console.error("Error deleting category:", response.data.message);
             addCategoryStore.showAlert("Error while deleting category..");

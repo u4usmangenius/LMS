@@ -4,6 +4,7 @@ import Modal from "../model/Modal";
 import Addstudents from "./AddStudents";
 import { observer } from "mobx-react-lite";
 import StudentList from "./StudentList";
+import StudentSearchInput from "./StudentSearchInput";
 
 const students = () => {
   return (
@@ -12,7 +13,8 @@ const students = () => {
       <div className="formlist-list-container">
         <div className="formlist-header-row">
           <h1>students</h1>
-          {/* <TestSearchInput/> */}
+          {/* <StudentSearchInput /> */}
+
           <button
             className="formlist-click-add-button"
             onClick={async () => {
@@ -35,7 +37,7 @@ const students = () => {
               </Modal>
             </>
           ) : null}
-          <StudentList/>
+          <StudentList />
         </div>
       </div>{" "}
     </>

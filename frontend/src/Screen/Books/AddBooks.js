@@ -77,7 +77,7 @@ const AddBooks = () => {
 
   return (
     <div className="add-form-content">
-      <h2 className="add-form-heading">Categories</h2>
+      <h2 className="add-form-heading">Books</h2>
       <form onSubmit={handleSubmit}>
         <div className="add-form-row">
           <div className="add-form-group">

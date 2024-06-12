@@ -47,7 +47,7 @@ const TransectionList = () => {
     <>
       <div className="Form-list-container">
         <div className="formlist--search-end-row">
-          <h2>Showing Transections</h2>
+          <h2></h2>
 
           <TransectionSearchInput />
         </div>
@@ -86,7 +86,7 @@ const TransectionList = () => {
                     <td>{transection.batch_time}</td>
                     <td>{transection.category}</td>
                     <td>{transection.title}</td>
-                    <td>{transection.fine}</td>
+                    <td>{transection.fine ? transection.fine : "-"}</td>
                     <td className="FormList-edit-icon">
                       <div
                         onClick={() => handleEdit(transection)}

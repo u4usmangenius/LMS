@@ -22,7 +22,7 @@ const BookList = () => {
   }, [bookStore.FiltreCategoryName]);
   useEffect(() => {
     bookStore.getDataBYCategory();
-  }, []);
+  }, [bookStore.categories]);
   const handleEdit = (book) => {
     addbookStore.setbooksData(book);
     console.log(book.bookId, "asd");

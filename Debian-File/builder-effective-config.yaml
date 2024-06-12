@@ -1,0 +1,16 @@
+directories:
+  output: Debian-File
+  buildResources: build
+productName: Result
+linux:
+  target: deb
+  icon: icon.png
+  category: Utility
+  maintainer: Usman Chaudhary <usmantahir.gc.33@gmail.com>
+  description: Result Management System application built with Electron.
+  desktop:
+    Name: Result
+    Comment: Result Management System built with Electron.
+    Icon: icon.png
+files: []
+electronVersion: 26.6.10

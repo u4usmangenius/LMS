@@ -31,10 +31,10 @@ class AddtransectionStore {
   clearFormFields() {
     this.formData.roll_no = null;
     this.formData.name = "";
-    this.formData.batch_year = "";
-    this.formData.batch_time = "";
-    this.formData.department_name = "";
-    this.formData.category = "";
+    this.formData.batch_year = "Select Batch";
+    this.formData.batch_time = "Select Session";
+    this.formData.department_name = "Select Department";
+    this.formData.category = "Select Category";
     this.formData.phone_no = "";
     this.formData.title = "";
     this.formData.due_date = null;
@@ -159,7 +159,7 @@ class AddtransectionStore {
           phone_no: addtransectionStore.formData?.phone_no,
           title: addtransectionStore.formData?.title,
           due_date: datePlus14Days,
-          fine: 10,
+          fine: null,
         },
         { headers }
       );

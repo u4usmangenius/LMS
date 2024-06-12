@@ -17,7 +17,7 @@ const SearchInput = () => {
             onChange={(e) => transectionStore.setSelectedFilter(e.target.value)}
           >
             <option value="all">All</option>
-            <option value="title">title</option>
+            <option value="title">B.title</option>
             <option value="name">name</option>
             <option value="department_name">department_name</option>
             <option value="category">category</option>

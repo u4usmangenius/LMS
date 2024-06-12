@@ -1,37 +1,42 @@
 {
-  "name": "Result",
+  "name": "Library House",
   "version": "1.0.0",
-  "description": "A result application built with Electron.",
+  "description": "A Library Management System application powered by SCS.",
   "main": "main.js",
   "homepage": "./",
   "scripts": {
     "start": "nodemon --watch main.js --exec \"npx electron .\"",
     "prebuild": "rm -rf dist",
-    "build": "electron-builder"
+    "build:windows": "electron-builder --windows"
   },
+  "repository": "https://github.com/u4usmangenius/LMS",
   "keywords": [],
-  "author": "Usman Chaudhary <usmantahir.gc.33@gmail.com>",
+  "author": "Usman Genius <usmantahir.gc.33@gmail.com>",
   "license": "ISC",
   "devDependencies": {
     "electron": "^26.6.10",
     "electron-builder": "^24.13.3"
   },
+  "publish": {
+    "provider": "github",
+    "releaseType": "release"
+  },
   "build": {
-    "productName": "Result",
+    "appId": "com.Library.com",
+    "productName": "Library House",
     "directories": {
-      "output": "Debian-File"
+      "output": "dist"
     },
-    "linux": {
-      "target": "deb",
+    "win": {
+      "target": {
+        "target": "nsis",
+        "arch": [
+          "x64",
+          "ia32"
+        ]
+      },
       "icon": "icon.png",
-      "category": "Utility",
-      "maintainer": "Usman Chaudhary <usmantahir.gc.33@gmail.com>",
-      "description": "Result Management System application built with Electron.",
-      "desktop": {
-        "Name": "Result",
-        "Comment": "Result Management System built with Electron.",
-        "Icon": "icon.png"
-      }
+      "publisherName": "Usman Genius"
     }
   },
   "dependencies": {
@@ -47,6 +52,7 @@
     "multer": "^1.4.5-lts.1",
     "node-cron": "^3.0.3",
     "pdfkit": "^0.14.0",
-    "sqlite3": "^5.1.6"
+    "sqlite3": "^5.1.6",
+    "sweetalert2-react-content": "^5.0.7"
   }
 }

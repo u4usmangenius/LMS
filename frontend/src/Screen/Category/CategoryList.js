@@ -54,7 +54,7 @@ const CategoryList = () => {
       ) : (
         <div className="Form-list-container">
           <div className="formlist--search-end-row">
-            <h2>Showing Categories</h2>
+            <h2></h2>
             <CategorySearchInput />
           </div>
 

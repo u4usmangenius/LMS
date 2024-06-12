@@ -6,6 +6,7 @@ import { observer } from "mobx-react-lite";
 import { historyStore } from "../../store/HistoryStore/HistoryStore";
 import NoData from "../../assests/noData.png";
 import { modelStore } from "../../store/ModelStore/ModelStore";
+import HistorySearchInput from "./HistorySearchInput";
 const HistoryList = () => {
   const handleEdit = (history) => {
     // addhistoryStore.sethistoryData(history);
@@ -49,10 +50,11 @@ const HistoryList = () => {
         <LoadingSpinner />
       ) : (
         <div className="Form-list-container">
-          <div className="formlist--search-end-row">
+          {/* <div className="formlist--search-end-row">
             <h2>Showing History</h2>
-            <historyearchInput />
-          </div>
+            <HistorySearchInput  />
+
+          </div> */}
 
           {historyStore.isLoading ? (
             <LoadingSpinner />

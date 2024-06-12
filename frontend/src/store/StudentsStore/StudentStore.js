@@ -291,7 +291,7 @@ class StudentStore {
   async handleDelete(student) {
     console.log("first,returnrrrrrrrrrrrrr", student);
     const confirmed = await this.showConfirm(
-      `Are you sure you want to delete ${student.acc_no}?`
+      `Are you sure you want to delete Roll No:${student.id} name: ${student.name}?`
     );
     if (confirmed) {
       const token = localStorage.getItem("bearer token");
@@ -307,7 +307,7 @@ class StudentStore {
             );
             this.setstudents(updatedstudents);
             this.fetchDataFromBackend(1);
-            addstudentStore.showAlert("student Deleted Successfully..");
+            addstudentStore.showAlert("Student deleted Successfully..");
           } else {
             console.error("Error deleting student:", response.data.message);
             addstudentStore.showAlert("Error while deleting student..");

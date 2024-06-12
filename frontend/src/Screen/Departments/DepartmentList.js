@@ -52,7 +52,7 @@ const DepartmentList = () => {
       ) : (
         <div className="Form-list-container">
           <div className="formlist--search-end-row">
-            <h2>Showing Departments</h2>
+            <h2></h2>
             <DepartmentSearchInput />
           </div>
 

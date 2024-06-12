@@ -86,7 +86,7 @@ const Addstudents = () => {
 
   return (
     <div className="add-form-content">
-      <h2 className="add-form-heading">Categories</h2>
+      <h2 className="add-form-heading">Student</h2>
       <form onSubmit={handleSubmit}>
         <div className="add-form-row">
           <div className="add-form-group">
@@ -107,7 +107,11 @@ const Addstudents = () => {
               type="number"
               className="addForm-input-type-text"
               placeholder="Enter student roll no"
-              value={addstudentStore.formData.roll_no}
+              value={
+                addstudentStore.formData.roll_no
+                  ? addstudentStore.formData.roll_no
+                  : ""
+              }
               onChange={(e) => {
                 let value = parseInt(e.target.value);
                 console.log("-->", value);
