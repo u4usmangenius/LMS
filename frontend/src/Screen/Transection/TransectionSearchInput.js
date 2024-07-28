@@ -17,17 +17,17 @@ const SearchInput = () => {
             onChange={(e) => transectionStore.setSelectedFilter(e.target.value)}
           >
             <option value="all">All</option>
-            <option value="title">B.title</option>
-            <option value="name">name</option>
-            <option value="department_name">department_name</option>
-            <option value="category">category</option>
-            <option value="phone_no ">phone_no</option>
+            <option value="name">Name</option>
+            <option value="department_name">Department</option>
+            <option value="title">Book Title</option>
+            <option tion value="fine">Fine</option>
+            {/* <option value="category">Category</option> */}
           </select>
 
           <input
             type="text"
             className="FormList-text-input"
-            placeholder="Search for a transection"
+            placeholder="Search Transaction"
             value={transectionStore.searchText}
             onChange={(e) => {
               transectionStore.setSearchText(e.target.value);

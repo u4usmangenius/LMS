@@ -30,6 +30,12 @@ const AddBooks = () => {
     // addbookStore.fetchData();
     bookStore.getDataBYCategory();
   }, []);
+  useEffect(() => {
+    const fun = async () => {
+      await bookStore.getDataBYDepartments();
+    };
+    fun();
+  }, []);
   const handleAddAnotherClick = () => {
     if (addbookStore.RestrictAddAnother) {
       return;
@@ -249,6 +255,38 @@ const AddBooks = () => {
           </div>
         </div>
         <div className="add-form-row">
+          <div className="add-form-group">
+            <label
+              className={`addForm-input-label ${
+                validations.errors.department &&
+                validations.formData.department !== "Select Department" &&
+                addbookStore.formData.department === null
+                  ? "steric-error-msg"
+                  : "normal-label"
+              }`}
+            >
+              Department
+              {validations.errors.department &&
+                validations.formData.department !== "Select Department" &&
+                addbookStore.formData.department === null && (
+                  <span className="steric-error-msg"> *</span>
+                )}
+            </label>
+            <select
+              value={addbookStore.formData.department}
+              className="addForm-input-select"
+              onChange={(e) =>
+                addbookStore.setFormData({ department: e.target.value })
+              }
+            >
+              <option>Select Department</option>
+              {bookStore.departments?.map((department, index) => (
+                <option key={index} value={department.name}>
+                  {department.name}
+                </option>
+              ))}
+            </select>
+          </div>
           <div className="add-form-group">
             <label
               className={`addForm-input-label ${

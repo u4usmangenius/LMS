@@ -27,6 +27,9 @@ class AddtransectionStore {
     title: "",
     due_date: null,
     fine: null,
+    checked_fine: null,
+    book_id: null,
+    book_quantity: null,
   };
   clearFormFields() {
     this.formData.roll_no = null;
@@ -38,6 +41,8 @@ class AddtransectionStore {
     this.formData.phone_no = "";
     this.formData.title = "";
     this.formData.due_date = null;
+    this.formData.book_id = null;
+    this.formData.book_quantity = null;
     validations.errors.roll_no = false;
     validations.errors.name = false;
     validations.errors.batch_year = false;
@@ -177,6 +182,11 @@ class AddtransectionStore {
 
   handleSubmit = async () => {
     try {
+      if (addtransectionStore.formData.book_quantity <= 0) {
+        this.showAlert(`Shortage of Book quantity, contact us later`);
+        addtransectionStore.clearFormFields();
+        return;
+      }
       const success = await this.addtransectionToBackend();
       if (success) {
         const fetchData = async () => {
@@ -194,7 +204,7 @@ class AddtransectionStore {
         fetchData();
 
         this.clearFormFields();
-        this.showAlert("transection added successfully");
+        this.showAlert("Transection Processed Successfully");
       } else {
         this.clearFormFields();
         this.showAlert("Failed to add transection. Please try again.");

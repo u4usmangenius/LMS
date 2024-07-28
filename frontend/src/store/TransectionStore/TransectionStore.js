@@ -88,9 +88,10 @@ class TransectionStore {
         Authorization: `${token}`,
       };
       const response = await axios.post(
-        "http://localhost:8080/api/books/categories/filter",
+        "http://localhost:8080/api/books/categories/dpts/filter",
         {
           category: addtransectionStore.formData.category,
+          department: addtransectionStore.formData.department_name,
         },
         {
           headers,
@@ -261,7 +262,7 @@ class TransectionStore {
           search: this.searchText,
           // sortBy: "acc_no",
           sortBy: "",
-          sortOrder: "desc",
+          sortOrder: "",
         },
         { headers }
       );
@@ -304,6 +305,9 @@ class TransectionStore {
           // sortBy: "acc_no",
           sortBy: "",
           sortOrder: "desc",
+          fine: addtransectionStore.formData.checked_fine
+            ? addtransectionStore.formData.checked_fine
+            : 0,
         },
         { headers }
       );

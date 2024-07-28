@@ -152,7 +152,7 @@ const StudentList = () => {
               <button
                 className="FormList-pagination-button"
                 style={{
-                  width: "97px",
+                  width: "103px",
                   marginLeft:"-7px"
                 }}
                 onClick={() => {
@@ -164,7 +164,7 @@ const StudentList = () => {
                   studentStore.fetchDataFromBackend(1);
                 }}
               >
-                clear filter
+                Clear Filter
               </button>
             </div>
           </container>

@@ -72,7 +72,7 @@ const Sidebar = () => {
           </li>
           <li>
             <NavLink to="/sidebar/transections">
-              <FaBook /> Transections
+              <FaBook /> Transactions
             </NavLink>
           </li>
           {/* <li>

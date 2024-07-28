@@ -12,7 +12,7 @@ const students = () => {
       {/* <Header/> */}
       <div className="formlist-list-container">
         <div className="formlist-header-row">
-          <h1>students</h1>
+          <h1>Students</h1>
           {/* <StudentSearchInput /> */}
 
           <button
@@ -23,7 +23,7 @@ const students = () => {
               // await feeAccount.getCurrentMonthDates();
             }}
           >
-            Add students
+            Add Students
           </button>
         </div>
         <div>

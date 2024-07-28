@@ -43,12 +43,78 @@ const TransectionList = () => {
   const handleFilterChange = (filter) => {
     transectionStore.setSelectedFilter(filter);
   };
+  const handleFineChange = (e) => {
+    if (e.target.checked) {
+      addtransectionStore.setFormData({
+        checked_fine: 5,
+        // checked_fine: e.target.value,
+      });
+      transectionStore.fetchDataFromBackend();
+    } else {
+      addtransectionStore.setFormData({
+        checked_fine: 0,
+      });
+      transectionStore.fetchDataFromBackend();
+    }
+    console.log(addtransectionStore.formData.checked_fine, "-------------MMM");
+  };
+  const Checkmark = ({ size, color }) => (
+    <div style={{ fontSize: size, color: color }}>✔</div>
+  );
+
+  const Cross = ({ size, color }) => (
+    <div style={{ fontSize: size, color: color }}>✘</div>
+  );
   return (
     <>
       <div className="Form-list-container">
         <div className="formlist--search-end-row">
-          <h2></h2>
+          <label
+            // className=""
 
+            style={{
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              gap: "10px",
+              // border: "0.3px solid #000",
+            }}
+          >
+            <div
+              className="FormList-pagination-button"
+              style={{
+                backgroundColor: "#2c3e50",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "space-between",
+                gap: "10px",
+                fontSize: "15px",
+                // width: "110px",
+                // border: "0.3px solid #000",
+                cursor: "pointer",
+                fontWeight:"bold"
+                ,letterSpacing:"0px"
+              }}
+            >
+              Fine 
+              {addtransectionStore.formData.checked_fine ? (
+                <Checkmark size="24px" color="blue" />
+              ) : (
+                // <Cross size="24px" color="red" />
+                ""
+              )}
+            </div>
+            <input
+              type="checkbox"
+              onChange={handleFineChange}
+              style={{
+                width: "40px",
+                height: "20px",
+                cursor: "pointer",
+                display: "none",
+              }}
+            />
+          </label>
           <TransectionSearchInput />
         </div>
 
@@ -68,9 +134,9 @@ const TransectionList = () => {
                   <th>Phone</th>
                   <th>Department</th>
                   <th>Batch</th>
-                  <th>Session</th>
-                  <th>B.Category</th>
-                  <th>B.Title</th>
+                  <th>Book Title</th>
+                  <th>Issue Date</th>
+                  <th>Return Date</th>
                   <th>Fine</th>
                   <th>Actions</th>
                 </tr>
@@ -83,9 +149,9 @@ const TransectionList = () => {
                     <td>{transection.phone_no ? transection.phone_no : "-"}</td>
                     <td>{transection.department_name}</td>
                     <td>{transection.batch_year}</td>
-                    <td>{transection.batch_time}</td>
-                    <td>{transection.category}</td>
                     <td>{transection.title}</td>
+                    <td>{transection.created_at.split(" ")[0]}</td>
+                    <td>{transection.due_date.split(" ")[0]}</td>
                     <td>{transection.fine ? transection.fine : "-"}</td>
                     <td className="FormList-edit-icon">
                       <div

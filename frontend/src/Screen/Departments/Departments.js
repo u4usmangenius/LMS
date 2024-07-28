@@ -21,7 +21,7 @@ const Departments = () => {
               // await feeAccount.getCurrentMonthDates();
             }}
           >
-            Add new
+            Add New
           </button>
         </div>
         <div>

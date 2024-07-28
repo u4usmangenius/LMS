@@ -17,6 +17,7 @@ class AddbookStore {
   editORsubmit = false;
   RestrictAddAnother = false;
   formData = {
+    department: "Select Department",
     acc_no: "",
     title: "",
     author: "",
@@ -31,6 +32,7 @@ class AddbookStore {
     this.formData.title = "";
     this.formData.author = "";
     this.formData.publisher = "";
+    this.formData.department = "Select Department";
     this.formData.category = "";
     this.formData.remarks = "";
     this.formData.cost = null;
@@ -75,6 +77,7 @@ class AddbookStore {
     this.formData.author = data.author;
     this.formData.publisher = data.publisher;
     this.formData.category = data.category;
+    this.formData.department = data.department;
     this.formData.remarks = data.remarks;
     this.formData.cost = data.cost;
     this.formData.quantity = data.quantity;
@@ -127,6 +130,7 @@ class AddbookStore {
           acc_no: book.acc_no,
           title: book.title,
           author: book.author,
+          department: book.department,
           publisher: book.publisher,
           category: book.category,
           remarks: book.remarks,
@@ -158,6 +162,7 @@ class AddbookStore {
         author: this.formData.author,
         publisher: this.formData.publisher,
         category: this.formData.category,
+        department: this.formData.department,
         remarks: this.formData.remarks,
         cost: this.formData.cost,
         quantity: this.formData.quantity,

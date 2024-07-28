@@ -62,7 +62,7 @@ const DashboardList = () => {
                 marginLeft: "-5%",
               }}
             >
-              Latest Transections
+              Latest Transactions
             </h2>
             <div style={{ marginRight: "0.1%", marginTop: "-0.5%" }}>
               <TransectionSearchInput />
@@ -88,9 +88,9 @@ const DashboardList = () => {
                     <th>Phone</th>
                     <th>Department</th>
                     <th>Batch</th>
-                    <th>Session</th>
-                    <th>B.Category</th>
-                    <th>B.Title</th>
+                    <th>Book Title</th>
+                    <th>Issue Date</th>
+                    <th>Return Date</th>
                     <th>Fine</th>
                   </tr>
                 </thead>
@@ -104,9 +104,9 @@ const DashboardList = () => {
                       </td>
                       <td>{transection.department_name}</td>
                       <td>{transection.batch_year}</td>
-                      <td>{transection.batch_time}</td>
-                      <td>{transection.category}</td>
                       <td>{transection.title}</td>
+                      <td>{transection.created_at.split(" ")[0]}</td>
+                      <td>{transection.due_date.split(" ")[0]}</td>
                       <td>{transection.fine ? transection.fine : "-"}</td>
                     </tr>
                   ))}

@@ -92,7 +92,7 @@ const Addtransections = () => {
     };
 
     let students = fetchData();
-  }, [addtransectionStore.formData.category]);
+  }, [addtransectionStore.formData.department_name,addtransectionStore.formData.category]);
   const handleAddAnotherClick = () => {
     if (addtransectionStore.RestrictAddAnother) {
       return;
@@ -143,7 +143,7 @@ const Addtransections = () => {
 
   return (
     <div className="add-form-content">
-      <h2 className="add-form-heading">Transection</h2>
+      <h2 className="add-form-heading">Transaction</h2>
       <form onSubmit={handleSubmit}>
         <div className="add-form-row">
           <div className="add-form-group">
@@ -457,10 +457,32 @@ const Addtransections = () => {
               value={addtransectionStore.formData.title}
               className="addForm-input-select"
               onChange={(e) => {
-                addtransectionStore.setFormData({
-                  title: e.target.value,
-                });
+                // Find the selected book object based on its title
+                const selectedBook = categorized_books.find(
+                  (book) => book.title === e.target.value
+                );
+
+                if (selectedBook) {
+                  addtransectionStore.setFormData({
+                    title: e.target.value,
+                    book_id: selectedBook.id,
+                    book_quantity: selectedBook.quantity,
+                  });
+                } else {
+                  addtransectionStore.setFormData({
+                    title: "",
+                    book_id: "",
+                    book_quantity: "",
+                  });
+                }
               }}
+              // onChange={(e) => {
+              //   addtransectionStore.setFormData({
+              //     title: e.target.value,
+              //     book_id: `here i want to show selected book id ${e.id}`,
+              //     book_quantity: `here i want to show selected book id ${e.id}`,
+              //   });
+              // }}
             >
               <option value={""}>Select Book</option>
               {loading ? null : (

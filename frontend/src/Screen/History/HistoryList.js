@@ -72,11 +72,10 @@ const HistoryList = () => {
                     <th>Phone</th>
                     <th>Department</th>
                     <th>Batch</th>
-                    <th>Session</th>
-                    <th>B.Category</th>
-                    <th>B.Title</th>
+                    <th>Book Title</th>
+                    <th>Issue Date</th>
+                    <th>Return Date</th>
                     <th>Fine</th>
-                    {/* <th>Actions</th> */}
                   </tr>
                 </thead>
                 <tbody>
@@ -87,9 +86,9 @@ const HistoryList = () => {
                       <td>{history.phone_no ? history.phone_no : "-"}</td>
                       <td>{history.department_name}</td>
                       <td>{history.batch_year}</td>
-                      <td>{history.batch_time}</td>
-                      <td>{history.category}</td>
                       <td>{history.title}</td>
+                      <td>{history.created_at.split(" ")[0]}</td>
+                      <td>{history.due_date.split(" ")[0]}</td>
                       <td>{history.fine}</td>
                       {/* <td className="FormList-edit-icon">
                         <div

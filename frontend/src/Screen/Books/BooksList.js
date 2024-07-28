@@ -21,8 +21,18 @@ const BookList = () => {
     bookStore.fetchDataFromBackend(1);
   }, [bookStore.FiltreCategoryName]);
   useEffect(() => {
-    bookStore.getDataBYCategory();
-  }, [bookStore.categories]);
+    const data = async () => {
+      await bookStore.getDataBYCategory();
+    };
+    data();
+  }, []);
+  useEffect(() => {
+    const fun = async () => {
+      await bookStore.getDataBYDepartments();
+    };
+    fun();
+  }, []);
+
   const handleEdit = (book) => {
     addbookStore.setbooksData(book);
     console.log(book.bookId, "asd");
@@ -48,9 +58,9 @@ const BookList = () => {
       <div className="Form-list-container">
         <div className="formlist--search-row">
           {/* show categories filter */}
-          <div className="Form-search-bar">
+          <div className="Form-search-bar" style={{}}>
             <select
-              className="Form-filter-ClassName"
+              className="Form-filter-ClassName Form-filter-ClassName-radius"
               value={bookStore.FiltreCategoryName}
               onChange={(e) => {
                 bookStore.FiltreCategoryName = e.target.value;
@@ -87,6 +97,7 @@ const BookList = () => {
                   <th>Author</th>
                   <th>Publisher</th>
                   <th>Category</th>
+                  <th>Department</th>
                   <th>Remarks</th>
                   <th>Cost</th>
                   <th>Quantity</th>
@@ -101,6 +112,7 @@ const BookList = () => {
                     <td>{book.author}</td>
                     <td>{book.publisher}</td>
                     <td>{book.category}</td>
+                    <td>{book.department ? book.department : "-"}</td>
                     <td>{book.remarks}</td>
                     <td>{book.cost}</td>
                     <td>{book.quantity}</td>

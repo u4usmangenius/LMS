@@ -4,6 +4,32 @@ const db = require("../db/Sqlite").db;
 const { verifyToken } = require("./authMiddleware");
 
 // router to get all books related to a specific category, don't remove it, it is important
+router.post("/api/books/categories/dpts/filter", verifyToken, (req, res) => {
+  const { category, department } = req.body;
+
+  if (!category || !department) {
+    return res
+      .status(400)
+      .json({ success: false, message: "Category and department is required" });
+  }
+
+  const query = `
+    SELECT id, acc_no, title, publisher, year, pages, binding, remarks, cost, quantity, author, category
+    FROM books
+    WHERE category = ? AND department = ?
+  `;
+
+  db.all(query, [category,department], (err, rows) => {
+    if (err) {
+      console.error("Error fetching books:", err);
+      res
+        .status(500)
+        .json({ success: false, message: "Internal server error" });
+    } else {
+      res.status(200).json({ success: true, books: rows });
+    }
+  });
+});
 router.post("/api/books/categories/filter", verifyToken, (req, res) => {
   const { category } = req.body;
 
@@ -71,7 +97,7 @@ router.post("/api/books/paginate/category", verifyToken, (req, res) => {
   const offset = (page - 1) * page_size;
 
   let query = `
-    SELECT id, acc_no, title, publisher, year, pages, binding, remarks, cost, quantity, author, category
+    SELECT id, acc_no, title,department, publisher, year, pages, binding, remarks, cost, quantity, author, category
     FROM books
     WHERE 1=1
   `;
@@ -123,16 +149,18 @@ router.post("/api/books/paginate/category", verifyToken, (req, res) => {
 //update.........
 // Route to paginate books , saerch by name and filter , having some updates from usman
 router.post("/api/books/paginate", verifyToken, (req, res) => {
-  const { sortBy, sortOrder, search, category } = req.body; // Include category in destructuring
-  const page = parseInt(req.body.page) || 1;
-  const page_size = parseInt(req.body.pageSize) || 5;
-  const filter = req.body.filter || "";
+  console.log(req.body);
+  const { sortBy, sortOrder, search, category, filter, page, page_size } =
+    req.body;
+
+  const pageNumber = parseInt(page) || 1;
+  const pageSize = parseInt(page_size) || 5;
   const sortByColumn = sortBy || "created_at";
   const sortDirection = sortOrder || "desc";
-  const offset = (page - 1) * page_size;
+  const offset = (pageNumber - 1) * pageSize;
 
   let query = `
-    SELECT id, acc_no, title, publisher, year, pages, binding, remarks, cost, quantity, author, category
+    SELECT id, department, acc_no, title, publisher, year, pages, binding, remarks, cost, quantity, author, category
     FROM books
     WHERE 1=1
   `;
@@ -141,7 +169,6 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
 
   // Add condition to filter by category if a value is received and not empty
   if (category && category.trim() !== "") {
-    // Check if category is provided and not empty
     query += ` AND category = ?`;
     params.push(category);
   }
@@ -157,7 +184,7 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
     filter === "quantity"
   ) {
     query += ` AND ${filter} LIKE ?`;
-    params.push(`%${search}%1`);
+    params.push(`%${search}%`);
   } else if (filter === "all") {
     // Handle global search
     query += ` AND (acc_no LIKE ? OR title LIKE ? OR author LIKE ? OR publisher LIKE ? OR category LIKE ? OR remarks LIKE ? OR cost LIKE ? OR quantity LIKE ?)`;
@@ -172,8 +199,9 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
       `%${search}%`
     );
   }
+
   query += ` ORDER BY ${sortByColumn} ${sortDirection} LIMIT ? OFFSET ?`;
-  params.push(page_size, offset);
+  params.push(pageSize, offset);
 
   db.all(query, params, (err, rows) => {
     if (err) {
@@ -190,13 +218,14 @@ router.post("/api/books/paginate", verifyToken, (req, res) => {
             .json({ success: false, message: "Internal server error" });
         } else {
           const totalCount = row.count;
-          const totalPages = Math.ceil(totalCount / page_size);
+          const totalPages = Math.ceil(totalCount / pageSize);
           res.status(200).json({ success: true, books: rows, totalPages });
         }
       });
     }
   });
 });
+
 // Route to show a specific book
 router.get("/api/books/:acc_no", verifyToken, (req, res) => {
   const acc_no = req.params.acc_no;
@@ -250,16 +279,18 @@ router.post("/api/books", verifyToken, (req, res) => {
     remarks,
     cost,
     quantity,
+    department,
   } = req.body;
 
   const query = `
-    INSERT INTO books (acc_no, author, category, title, publisher, year, pages, binding, remarks, cost, quantity)
-    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    INSERT INTO books (acc_no, author,department, category, title, publisher, year, pages, binding, remarks, cost, quantity)
+    VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
   `;
 
   const params = [
     acc_no,
     author,
+    department,
     category,
     title,
     publisher,
@@ -291,6 +322,7 @@ router.put("/api/books/:bookId", verifyToken, (req, res) => {
     author,
     category,
     title,
+    department,
     publisher,
     year,
     pages,
@@ -302,13 +334,14 @@ router.put("/api/books/:bookId", verifyToken, (req, res) => {
 
   const query = `
     UPDATE books
-    SET acc_no = ?, author = ?, category = ?, title = ?, publisher = ?, year = ?, pages = ?, binding = ?, remarks = ?, cost = ?, quantity = ?
+    SET acc_no = ?, author = ?, department = ?,category = ?, title = ?, publisher = ?, year = ?, pages = ?, binding = ?, remarks = ?, cost = ?, quantity = ?
     WHERE id = ?
   `;
 
   const params = [
     acc_no,
     author,
+    department,
     category,
     title,
     publisher,

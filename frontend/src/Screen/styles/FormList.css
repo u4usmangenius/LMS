@@ -309,17 +309,20 @@ body {
   max-width: 46%;
   gap: 2.4%;
 }
+.categories-filter-container select{
+  cursor: pointer;
+}
 .categories-filter-container > .Form-search-bar {
   width: 27%;
   padding-left: 12px;
   padding-right: 12px;
-  }
-  .categories-filter-container > .Form-search-bar >select {
+}
+.categories-filter-container > .Form-search-bar > select {
   border-radius: 3px !important;
-
-  }
+}
 .Form-search-bar input[type="text"]::placeholder {
-  color: #fff;
+  color: #ccc;
+  font-size: 14px !important;
 }
 
 .Form-search-bar {
@@ -331,7 +334,14 @@ body {
   border: none;
   max-width: 417px;
   height: 40px;
-  border-radius: 50px;
+  /* border-radius: 50px; */
+  /* border-radius: 21px; */
+  border-radius: 17px;
+  border: -1px !important;
+  /* box-shadow: 0px 0px 5px rgba(5, 63, 129, 0.4) !important; */
+}
+.Form-search-bar input[type="text"] {
+  font-size: 15px;
 }
 .Formlist-reports-Batch {
   display: flex;
@@ -344,23 +354,35 @@ body {
 .Set-Form-search-bar {
   /* border: 1px solid #007bff; */
   box-shadow: 4px 0 12px rgba(194, 188, 7, 0.24);
+  /* background-color: #f97c4d; */
   background-color: #2c3e50;
   /* transition: 0.4s ease-out; */
-  animation: slideIn 0.6s ease-out forwards;
+  /* animation: slideIn 0.6s ease-out forwards; */
 }
 .Form-search-category {
-  color: #ecf0f1;
+  color: #ccc;
   background: transparent;
   border: none;
   /* border-radius: 30px; */
   outline: none;
   border-right: 1px solid #ccc;
   margin-right: 5px;
-  font-size: 11px;
+  padding-right: 10px;
+  font-size: 15px;
+  width: 110px;
+  cursor: pointer;
 }
 .Form-search-category option {
   background-color: #2c3e50;
-  color: #fff !important  ;
+  color: #ccc !important  ;
+}
+.Form-filter-ClassName-radius {
+  border-radius: 5px;
+  font-size: 15px;
+  cursor: pointer;
+}
+.Form-filter-ClassName-radius option{
+  cursor: pointer;
 }
 .Form-filter-ClassName {
   padding-left: 5px;
@@ -379,10 +401,10 @@ body {
   width: 121px;
   margin-right: 10px;
   border-right: 1px solid #ccc;
-
-  color: #fff;
+  color: #ffffff;
   border: none;
   outline: none;
+  
 }
 
 .Form-List-search-button {

@@ -10,6 +10,7 @@ class BookStore {
   searchText = "";
   selectedFilter = "all";
   books = [];
+  departments = [];
   categories = [];
   showEditModal = false;
   editingbook = null;
@@ -37,6 +38,7 @@ class BookStore {
       isLoading: observable,
       totalPages: observable,
       getCurrentPageData: computed,
+      getDataBYDepartments: action,
       getDataBYCategory: action,
       setrowsPerPage: action,
       setSearchText: action,
@@ -54,6 +56,25 @@ class BookStore {
       handleCancelEdit: action,
       handleDelete: action,
     });
+  }
+  async getDataBYDepartments() {
+    try {
+      const token = localStorage.getItem("bearer token");
+      const headers = {
+        Authorization: `${token}`,
+      };
+      const response = await axios.get("http://localhost:8080/api/departments", {
+        headers,
+      });
+
+      if (response.status === 200) {
+        this.departments = response.data;
+      } else {
+        console.error("Error:", response.data.error);
+      }
+    } catch (error) {
+      console.error("Error:", error);
+    }
   }
   async getDataBYCategory() {
     try {
@@ -174,7 +195,7 @@ class BookStore {
         "http://localhost:8080/api/books/paginate",
         {
           page: this.currentPage,
-          pageSize: this.rowsPerPage,
+          page_size: this.rowsPerPage,
           filter: this.selectedFilter,
           category: this.FiltreCategoryName ? this.FiltreCategoryName : "",
           search: this.searchText,
@@ -211,6 +232,7 @@ class BookStore {
       author: addbookStore.formData.author,
       publisher: addbookStore.formData.publisher,
       category: addbookStore.formData.category,
+      department: addbookStore.formData.department,
       remarks: addbookStore.formData.remarks,
       cost: addbookStore.formData.cost,
       quantity: addbookStore.formData.quantity,
@@ -227,6 +249,7 @@ class BookStore {
           acc_no: booksInfo.acc_no,
           title: booksInfo.title,
           author: booksInfo.author,
+          department: booksInfo.department,
           publisher: booksInfo.publisher,
           category: booksInfo.category,
           remarks: booksInfo.remarks,

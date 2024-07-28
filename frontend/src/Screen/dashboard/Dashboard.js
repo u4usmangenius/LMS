@@ -70,17 +70,10 @@ const Dashboard = () => {
     }
   };
   useEffect(() => {
-    if (!dashboardStore.dashboard) {
-      dashboardStore.fetchData();
-      dashboardStore.dashboard = true;
-    }
-  }, [dashboardStore.dashboard]);
+    dashboardStore.fetchData();
+  }, []);
+  // }, [dashboardStore.data]);
 
-  useEffect(() => {
-    if (dashboardStore.FiltreClassName !== "") {
-      dashboardStore.getDataByClassName();
-    }
-  }, [FiltreClassName]);
   useEffect(() => {
     const token = localStorage.getItem("bearer token");
     setAuth(token);
@@ -143,7 +136,7 @@ const Dashboard = () => {
           <div className="dashboard-card">
             <div className="dashboard-card-heading">Students</div>
             <div className="dashboard-card-text">
-              {dashboardStore.loading ? (
+              {dashboardStore.loading && dashboardStore.data.students ? (
                 <Loader />
               ) : dashboardStore.data.students ? (
                 dashboardStore.data.students
@@ -183,7 +176,7 @@ const Dashboard = () => {
             </div>
           </div>
           <div className="dashboard-card">
-            <div className="dashboard-card-heading">Transections</div>
+            <div className="dashboard-card-heading">Transactions</div>
             <div className="dashboard-card-text">
               {dashboardStore.loading ? (
                 <Loader />

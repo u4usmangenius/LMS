@@ -23,7 +23,7 @@ const SearchInput = () => {
           <input
             type="text"
             className="FormList-text-input"
-            placeholder="Search for a category"
+            placeholder="Search Category"
             value={categoryStore.searchText}
             onChange={(e) => {
               categoryStore.setSearchText(e.target.value);

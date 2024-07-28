@@ -17,20 +17,17 @@ const SearchInput = () => {
             onChange={(e) => studentStore.setSelectedFilter(e.target.value)}
           >
             <option value="all">All</option>
-            <option value="roll_no">roll_no</option>
-            <option value="name">name</option>
-            <option value="address">address</option>
-            <option value="phone_no">phone_no</option>
-            <option value="batch_year">batch_year</option>
-            <option value="batch_time">batch_time</option>
-            <option value="gender">gender</option>
-            <option value="department_name">department_name</option>
+            <option value="roll_no">Roll No</option>
+            <option value="name">Name</option>
+            <option value="address">Address</option>
+            <option value="phone_no">Phone</option>
+            <option value="gender">Gender</option>
           </select>
 
           <input
             type="text"
             className="FormList-text-input"
-            placeholder="Search for a student"
+            placeholder="Search Student"
             value={studentStore.searchText}
             onChange={(e) => {
               studentStore.setSearchText(e.target.value);

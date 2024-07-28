@@ -8,17 +8,18 @@ class DashboardStore {
   dashboard = false;
   isDropdownOpen = false;
   loading = false;
-
+  counts = [];
   data = {
-    totalBooks: null,
-    students: null,
-    transections: null,
+    totalBooks: "",
+    students: "",
+    transections: "",
   };
   FiltreClassName = "2nd Year";
   results = [];
 
   constructor() {
     makeObservable(this, {
+      counts: observable,
       loading: observable,
       dashboard: observable,
       results: observable,
@@ -28,7 +29,6 @@ class DashboardStore {
       setLoading: action,
       fetchData: action,
       setResults: action,
-      getDataByClassName: action,
       handleExport: action,
       handleImport: action,
     });
@@ -116,40 +116,6 @@ class DashboardStore {
     }
   }
 
-  async getDataByClassName() {
-    this.results = [];
-    const ClassName = this.FiltreClassName;
-    console.log("===================");
-    console.log(ClassName, "store");
-    console.log("===================");
-    try {
-      const token = localStorage.getItem("bearer token");
-      const headers = {
-        Authorization: `${token}`,
-      };
-      const response = await axios.post(
-        "http://localhost:8080/api/results/ClassName",
-        { ClassName },
-        {
-          headers,
-        }
-      );
-
-      if (response.status === 200) {
-        this.results = [];
-
-        this.setResults(response.data.data);
-        console.log("--------------------------");
-        console.log(this.results);
-        console.log("--------------------------");
-      } else {
-        console.error("Error:", response.data.error);
-      }
-    } catch (error) {
-      console.error("Error:", error);
-    }
-  }
-
   async fetchData() {
     this.setLoading(true);
     try {
@@ -167,13 +133,21 @@ class DashboardStore {
 
       if (response.status === 200) {
         const data = response.data.counts;
+        this.counts = data;
         console.log("-----------", data);
 
         // Access the data you need from the response
-        this.data.totalBooks = data.books;
-        this.data.students = data.students;
-        this.data.transections = data.transections;
-        console.log("start",data, data.books, data.students, data.transections,"end");
+        this.data.totalBooks = this.counts.books;
+        this.data.students = this.counts.students;
+        this.data.transections = this.counts.transections;
+        console.log(
+          "start",
+          data,
+          data.books,
+          data.students,
+          data.transections,
+          "end"
+        );
         // Do something with the data (e.g., update the UI)
       } else {
         console.error("Failed to fetch data:", response.status);

@@ -181,6 +181,7 @@ db.run(
     acc_no VARCHAR(255) NOT NULL UNIQUE,
     author VARCHAR(255),
     category VARCHAR(255) NOT NULL,
+    department VARCHAR(255),
     title VARCHAR(255) NOT NULL,
     publisher VARCHAR(255) ,
     year INT ,

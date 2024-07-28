@@ -2,6 +2,7 @@ import { makeObservable, observable, action } from "mobx";
 
 class Validations {
   errors = {
+    department: false,
     aac_no: false,
     title: false,
     author: false,
@@ -23,6 +24,7 @@ class Validations {
   validateForm() {
     let isValid = true;
     this.errors = {
+      department: false,
       aac_no: false,
       title: false,
       author: false,

@@ -10,18 +10,19 @@ import { modelStore } from "../../store/ModelStore/ModelStore";
 const Addstudents = () => {
   useEffect(() => {
     if (
-      addstudentStore.formData.roll_no ||
-      addstudentStore.formData.name ||
-      (addstudentStore.formData.batch_year &&
-        addstudentStore.formData.batch_year !== "Select Batch") ||
-      addstudentStore.formData.address ||
-      (addstudentStore.formData.batch_time &&
-        addstudentStore.formData.batch_time !== "Select Session") ||
-      (addstudentStore.formData.department_name &&
-        addstudentStore.formData.department_name !== "Select department") ||
-      (addstudentStore.formData.gender &&
-        addstudentStore.formData.gender !== "Select department") ||
-      addstudentStore.formData.phone_no
+      // addstudentStore.formData.roll_no ||
+      addstudentStore.formData.name 
+      // ||
+      // (addstudentStore.formData.batch_year &&
+      //   addstudentStore.formData.batch_year !== "Select Batch") ||
+      // addstudentStore.formData.address ||
+      // (addstudentStore.formData.batch_time &&
+        // addstudentStore.formData.batch_time !== "Select Session") ||
+      // (addstudentStore.formData.department_name &&
+        // addstudentStore.formData.department_name !== "Select department") ||
+      // (addstudentStore.formData.gender &&
+        // addstudentStore.formData.gender !== "Select department") ||
+      // addstudentStore.formData.phone_no
     ) {
       addstudentStore.editORsubmit = true;
       addstudentStore.RestrictAddAnother = true;

@@ -17,20 +17,17 @@ const SearchInput = () => {
             onChange={(e) => bookStore.setSelectedFilter(e.target.value)}
           >
             <option value="all">All</option>
-            <option value="category">category</option>
-            <option value="remarks">remarks</option>
-            <option value="acc_no">acc_no</option>
-            <option value="title">title</option>
-            <option value="author">author</option>
-            <option value="publisher">publisher</option>
-            <option value="cost">cost</option>
-            <option value="quantity">quantity</option>
+            <option value="remarks">Remarks</option>
+            <option value="acc_no">Acc_No</option>
+            <option value="title">Book Title</option>
+            <option value="author">Author</option>
+            <option value="publisher">Publisher</option>
           </select>
 
           <input
             type="text"
             className="FormList-text-input"
-            placeholder="Search for a book"
+            placeholder="Search Book"
             value={bookStore.searchText}
             onChange={(e) => {
               bookStore.setSearchText(e.target.value);

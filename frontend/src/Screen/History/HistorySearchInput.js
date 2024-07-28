@@ -23,11 +23,9 @@ const SearchInput = () => {
             onChange={(e) => historyStore.setSelectedFilter(e.target.value)}
           >
             <option value="all">All</option>
-            <option value="title">B.title</option>
-            <option value="name">name</option>
-            <option value="department_name">department_name</option>
-            <option value="category">category</option>
-            <option value="phone_no ">phone_no</option>
+            <option value="title">Book Title</option>
+            <option value="name">Name</option>
+            <option value="department_name">Department</option>
           </select>
 
           <input

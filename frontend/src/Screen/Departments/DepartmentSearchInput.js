@@ -15,8 +15,11 @@ const SearchInput = () => {
             className="Form-search-category"
             value={departmentStore.selectedFilter}
             onChange={(e) => departmentStore.setSelectedFilter(e.target.value)}
+            style={{
+              width:"121px"
+            }}
           >
-            <option value="department_name">dept</option>
+            <option value="department_name">Departments</option>
           </select>
 
           <input

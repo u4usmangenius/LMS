@@ -41,7 +41,7 @@ const Login = observer(() => {
     <div className="login-container">
       <form className="login-form" onSubmit={handleSubmit}>
         <h2>Welcome Back!</h2>
-        <p>Start managing your result faster and better</p>
+        <p>Unlock the World of Knowledge</p>
         <div className="login-input-group">
           <label>UserName</label>
           <div className="login-input-icon">

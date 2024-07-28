@@ -11,7 +11,7 @@ const transections = () => {
       {/* <Header/> */}
       <div className="formlist-list-container">
         <div className="formlist-header-row">
-          <h1>Transections</h1>
+          <h1>Transactions</h1>
           {/* <TestSearchInput/> */}
           <button
             className="formlist-click-add-button"
@@ -21,7 +21,7 @@ const transections = () => {
               // await feeAccount.getCurrentMonthDates();
             }}
           >
-            New Transection
+            New Transaction
           </button>
         </div>
         <div>
