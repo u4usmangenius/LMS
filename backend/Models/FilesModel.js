@@ -65,7 +65,7 @@ router.post(
       dialog.showMessageBox(mainWindow, {
         type: 'info',
         title: 'Success',
-        message: 'Database imported successfully.',
+        message: 'Database imported successfully. Please wait to reload the app automatically..',
         buttons: ['OK']
       }).then(() => {
         // After the dialog is closed, wait for a moment before running the remaining code
