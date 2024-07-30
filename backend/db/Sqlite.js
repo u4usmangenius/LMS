@@ -19,7 +19,7 @@ async function createUserTable() {
           console.error("Error creating user table:", err);
           reject(err);
         } else {
-          console.log("Successfully created user table");
+          // console.log("Successfully created user table");
           resolve();
         }
       }
@@ -82,7 +82,7 @@ db.run(
     if (err) {
       console.error("Error creating transection table:", err);
     } else {
-      console.log("Successfully created transections table");
+      // console.log("Successfully created transections table");
     }
   }
 );
@@ -110,7 +110,7 @@ db.run(
     if (err) {
       console.error("Error creating transection table:", err);
     } else {
-      console.log("Successfully created transections table");
+      // console.log("Successfully created transections table");
     }
   }
 );

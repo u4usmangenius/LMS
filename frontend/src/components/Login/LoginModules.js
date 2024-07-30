@@ -1,7 +1,9 @@
 import axios from "axios";
 import { loginstore } from "../../store/LoginStore/LoginStore";
-import { useEffect } from "react";
-import jwt_decode from "jwt-decode";
+import { useEffect } from "react"; 
+import { jwtDecode } from 'jwt-decode';
+
+
 
 export const handleLogin = async () => {
   const { formFields } = loginstore;
@@ -20,7 +22,7 @@ export const handleLogin = async () => {
       localStorage.setItem("user", response.data.username);
       localStorage.setItem("email", response.data.email);
 
-      const decodedToken = jwt_decode(response.data.token);
+      const decodedToken = jwtDecode(response.data.token);
       const tokenExpiration = decodedToken.exp; // Expiration time in seconds
 
       localStorage.setItem("tokenExpiration", tokenExpiration);

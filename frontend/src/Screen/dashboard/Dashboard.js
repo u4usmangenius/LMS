@@ -22,6 +22,12 @@ import { NavLink, useNavigate } from "react-router-dom";
 import { dashboardStore } from "../../store/DashboardStore/DashboardStore";
 import DashboardList from "./DashboardList";
 import Loader from "../../components/loaders/Loader";
+import {
+  BiImport,
+  BiSolidFileExport,
+  BiSolidFileImport,
+  BiSolidLogOut,
+} from "react-icons/bi";
 
 const Dashboard = () => {
   const MySwal = withReactContent(Swal);
@@ -123,8 +129,16 @@ const Dashboard = () => {
                 ref={dropdownRef}
                 className={`profile-dropdown ${isDropdownOpen ? "open" : ""}`}
               >
+                <li onClick={dashboardStore.handleImport}>
+                  <BiSolidFileImport />
+                  Import
+                </li>
+                <li onClick={dashboardStore.handleExport}>
+                  <BiSolidFileExport />
+                  Export
+                </li>
                 <li onClick={Logout}>
-                  <FaSignOutAlt />
+                  <BiSolidLogOut />
                   Logout
                 </li>
               </div>

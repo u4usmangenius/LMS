@@ -59,21 +59,34 @@ class DashboardStore {
           };
 
           // Make an Axios POST request to the import API
-          await axios.post("http://localhost:8080/api/import", formData, {
-            headers,
-          });
+          const response = await axios.post(
+            "http://localhost:8080/api/import",
+            formData,
+            {
+              headers,
+            }
+          );
 
           // Handle successful import
-          // window.alert("Database imported successfully");
-          // You can perform additional actions here as needed
+          if (response.status === 200) {
+            // loginstore.showSuccss("Database imported successfully");
+            console.log("Database imported successfully");
+          } else {
+            loginstore.showAlert(
+              `Importing Database failed, with code: ${response.status}`
+            );
+          } // loginstore.showSuccess("Database Imported Successfully...");
         } catch (error) {
           console.error("Import failed:", error);
-          loginstore.showWarning("Database Import Failed. Please try again."); // Show an error message to the user
-
-          // Handle error here
+          // if (error.response && error.response.status === 409) {
+          //   loginstore.showAlert(
+          //     "Database is currently in use, cannot replace."
+          //   );
+          // } else {
+          loginstore.showWarning("Failed to Import Database.");
+          // }
         }
       }
-      loginstore.showSuccss("Database Imported Successfully...");
     });
 
     fileInput.click();
@@ -86,33 +99,51 @@ class DashboardStore {
         Authorization: token,
       };
 
-      const response = await axios.get("http://localhost:8080/api/export", {
+      // Fetch the file from the server
+      const response = await fetch("http://localhost:8080/api/export", {
         headers,
-        responseType: "blob",
+        method: "GET",
       });
 
-      // Get the content disposition header to determine the file name and extension
-      const contentDisposition = response.headers["content-disposition"];
-      const filenameRegex = /filename[^;=\n]*=((['"]).*?\2|[^;\n]*)/;
-      const matches = filenameRegex.exec(contentDisposition);
-
-      let filename = "Result.sqlite"; // Default to .sqlite extension
-
-      if (matches != null && matches[1]) {
-        filename = matches[1].replace(/['"]/g, ""); // Get the filename from the header
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status}`);
       }
 
-      // Create an anchor element to trigger the download
-      const url = window.URL.createObjectURL(new Blob([response.data]));
-      const link = document.createElement("a");
-      link.href = url;
-      link.setAttribute("download", filename); // Set the filename with the correct extension
-      document.body.appendChild(link);
-      link.click();
-      loginstore.showSuccss("Backup is successfully done..");
+      const blob = await response.blob();
+      const url = window.URL.createObjectURL(blob);
+
+      // Create a temporary link element to trigger the download
+      const a = document.createElement("a");
+      a.href = url;
+      a.download = "Library.sqlite"; // Set the default file name
+      document.body.appendChild(a);
+      a.click();
+
+      // Cleanup
+      window.URL.revokeObjectURL(url);
+      document.body.removeChild(a);
+
+      // Notify success after the download is triggered
+      loginstore.showSuccss("Database export download started successfully.");
     } catch (error) {
       console.error("Export failed:", error);
-      loginstore.showAlert("Error while taking Backup..");
+
+      // Check for specific error cases
+      if (error.response) {
+        // Server responded with a status other than 200 range
+        console.error("Response error:", error.response.data);
+        loginstore.showAlert(
+          `Error: ${error.response.status} - ${error.response.data.message}`
+        );
+      } else if (error.request) {
+        // Request was made but no response was received
+        console.error("Request error:", error.request);
+        loginstore.showAlert("No response received from server.");
+      } else {
+        // Something else caused the error
+        console.error("Error:", error.message);
+        loginstore.showAlert("An unexpected error occurred.");
+      }
     }
   }
 
