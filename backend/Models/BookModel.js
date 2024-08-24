@@ -18,6 +18,7 @@ router.post("/api/books/categories/dpts/filter", verifyToken, (req, res) => {
     FROM books
     WHERE category = ? AND department = ?
   `;
+  // oky
 
   db.all(query, [category,department], (err, rows) => {
     if (err) {
